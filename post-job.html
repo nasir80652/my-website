@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post a Job - JobFinder Pakistan</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+  body { background:#f0f2f5; }
+  header { background:linear-gradient(135deg, #0d47a1, #1565c0); color:#fff; padding:18px 20px; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+  header h1 { font-size:19px; }
+  .container { padding:20px; }
+  .form-box { background:#fff; padding:22px; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,0.08); }
+  .form-box h2 { color:#0d47a1; margin-bottom:18px; font-size:20px; }
+  label { display:block; margin-top:14px; margin-bottom:6px; font-weight:bold; color:#333; font-size:14px; }
+  input, select, textarea { width:100%; padding:12px; border:2px solid #eee; border-radius:10px; font-size:15px; transition:border 0.2s; }
+  input:focus, select:focus, textarea:focus { outline:none; border-color:#0d47a1; }
+  textarea { resize:vertical; min-height:90px; }
+  .submit-btn { width:100%; padding:15px; background:linear-gradient(135deg, #ffb300, #ffa000); border:none; border-radius:10px; font-weight:bold; font-size:16px; margin-top:22px; box-shadow:0 4px 12px rgba(255,179,0,0.35); transition:transform 0.15s; }
+  .submit-btn:active { transform:scale(0.97); }
+  .msg { text-align:center; margin-top:15px; font-size:14px; font-weight:600; }
+  .back-link { display:block; margin-top:16px; color:#0d47a1; text-decoration:none; text-align:center; font-weight:600; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🔎 JobFinder Pakistan</h1>
+</header>
+
+<div class="container">
+  <div class="form-box">
+    <h2>🏢 Post a Job</h2>
+
+    <label>Job Title</label>
+    <input type="text" id="jobTitle" placeholder="e.g. Web Developer">
+
+    <label>Company Name</label>
+    <input type="text" id="companyName" placeholder="e.g. TechSol Pvt Ltd">
+
+    <label>Location</label>
+    <select id="jobLocation">
+      <option>Lahore</option>
+      <option>Karachi</option>
+      <option>Islamabad</option>
+      <option>Peshawar</option>
+    </select>
+
+    <label>Category</label>
+    <select id="jobCategory">
+      <option>IT & Software</option>
+      <option>Marketing</option>
+      <option>Accounting</option>
+      <option>Teaching</option>
+      <option>Driver</option>
+      <option>Customer Support</option>
+    </select>
+
+    <label>Salary (PKR)</label>
+    <input type="text" id="jobSalary" placeholder="e.g. 50,000">
+
+    <label>Job Description</label>
+    <textarea id="jobDesc" placeholder="Job ki tafseel likhein..."></textarea>
+
+    <button class="submit-btn" id="postBtn" onclick="postJob()">Post Job</button>
+    <p class="msg" id="message"></p>
+  </div>
+  <a href="index.html" class="back-link">⬅ Back to Home</a>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDpyT6JP3BZaS_FEmlokWaY_-fE4tmjIQQ",
+  authDomain: "jobfinder-pakistan.firebaseapp.com",
+  projectId: "jobfinder-pakistan",
+  storageBucket: "jobfinder-pakistan.firebasestorage.app",
+  messagingSenderId: "823733669210",
+  appId: "1:823733669210:web:99c3b484a1288412f73763"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.postJob = function() {
+  var title = document.getElementById('jobTitle').value.trim();
+  var company = document.getElementById('companyName').value.trim();
+  var location = document.getElementById('jobLocation').value;
+  var category = document.getElementById('jobCategory').value;
+  var salary = document.getElementById('jobSalary').value.trim();
+  var desc = document.getElementById('jobDesc').value.trim();
+  var msg = document.getElementById('message');
+  var btn = document.getElementById('postBtn');
+
+  if (title === '' || company === '' || salary === '') {
+    msg.style.color = 'red';
+    msg.textContent = 'Job Title, Company aur Salary zaroor bharein';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Posting...';
+
+  addDoc(collection(db, "jobs"), {
+    title: title,
+    company: company,
+    location: location,
+    category: category,
+    salary: salary,
+    description: desc,
+    createdAt: serverTimestamp()
+  })
+  .then(function() {
+    msg.style.color = 'green';
+    msg.textContent = 'Job successfully post ho gayi!';
+    btn.disabled = false;
+    btn.textContent = 'Post Job';
+    document.getElementById('jobTitle').value = '';
+    document.getElementById('companyName').value = '';
+    document.getElementById('jobSalary').value = '';
+    document.getElementById('jobDesc').value = '';
+  })
+  .catch(function(error) {
+    msg.style.color = 'red';
+    msg.textContent = 'Error: ' + error.message;
+    btn.disabled = false;
+    btn.textContent = 'Post Job';
+  });
+};
+</script>
+
+</body>
+</html>

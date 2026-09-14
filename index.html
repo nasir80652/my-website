@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JobFinder Pakistan</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+  body { background:#f0f2f5; }
+  header { background:linear-gradient(135deg, #0d47a1, #1565c0); color:#fff; padding:18px 20px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+  header h1 { font-size:21px; letter-spacing:0.5px; }
+  .auth-buttons button { background:#fff; color:#0d47a1; border:none; padding:9px 16px; margin-left:8px; border-radius:20px; font-weight:bold; font-size:13px; box-shadow:0 2px 4px rgba(0,0,0,0.1); transition:transform 0.15s; }
+  .auth-buttons button:active { transform:scale(0.95); }
+  .search-box { background:linear-gradient(135deg, #0d47a1, #1976d2); padding:25px 20px; text-align:center; }
+  .search-box input, .search-box select { padding:12px; margin:6px 0; border-radius:8px; border:none; width:100%; max-width:340px; font-size:15px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+  .search-box button { padding:12px 30px; background:#ffb300; border:none; border-radius:25px; font-weight:bold; margin-top:12px; font-size:15px; box-shadow:0 3px 8px rgba(255,179,0,0.4); transition:transform 0.15s; }
+  .search-box button:active { transform:scale(0.96); }
+  .categories { padding:25px 20px; }
+  .categories h2 { margin-bottom:14px; color:#1a1a1a; font-size:19px; }
+  .cat-list { display:flex; flex-wrap:wrap; gap:12px; }
+  .cat-item { background:#fff; padding:14px 18px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-decoration:none; color:#333; font-weight:600; font-size:14px; transition:transform 0.15s, box-shadow 0.15s; display:flex; align-items:center; gap:6px; }
+  .cat-item:active { transform:scale(0.96); box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+  .jobs { padding:25px 20px; }
+  .jobs h2 { margin-bottom:14px; color:#1a1a1a; font-size:19px; }
+  .job-card { background:#fff; padding:18px; border-radius:14px; margin-bottom:14px; box-shadow:0 2px 10px rgba(0,0,0,0.08); border-left:4px solid #0d47a1; transition:transform 0.15s; }
+  .job-card:active { transform:scale(0.98); }
+  .job-card h3 { color:#0d47a1; font-size:17px; margin-bottom:6px; }
+  .job-card p { color:#666; font-size:13.5px; margin:3px 0; }
+  .post-job { text-align:center; padding:30px 20px; }
+  .post-job a { text-decoration:none; }
+  .post-job button { background:linear-gradient(135deg, #0d47a1, #1565c0); color:#fff; padding:15px 35px; border:none; border-radius:25px; font-weight:bold; font-size:16px; box-shadow:0 4px 12px rgba(13,71,161,0.3); transition:transform 0.15s; }
+  .post-job button:active { transform:scale(0.96); }
+  .job-link { text-decoration:none; color:inherit; }
+  .loading-msg { text-align:center; color:#999; padding:15px; font-size:14px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🔎 JobFinder Pakistan</h1>
+  <div class="auth-buttons">
+    <a href="login.html"><button>Login</button></a>
+    <a href="login.html"><button>Signup</button></a>
+  </div>
+</header>
+
+<div class="search-box">
+  <input type="text" id="searchTitle" placeholder="Job Title (e.g. Developer)">
+  <select id="searchLocation">
+    <option>Location</option>
+    <option>Karachi</option>
+    <option>Lahore</option>
+    <option>Islamabad</option>
+    <option>Peshawar</option>
+  </select>
+  <br>
+  <button onclick="doSearch()">🔍 Search Jobs</button>
+</div>
+
+<div class="categories">
+  <h2>💼 Job Categories</h2>
+  <div class="cat-list">
+    <a href="category.html?cat=IT %26 Software" class="cat-item">💻 IT & Software</a>
+    <a href="category.html?cat=Marketing" class="cat-item">📢 Marketing</a>
+    <a href="category.html?cat=Accounting" class="cat-item">💰 Accounting</a>
+    <a href="category.html?cat=Teaching" class="cat-item">📚 Teaching</a>
+    <a href="category.html?cat=Driver" class="cat-item">🚗 Driver</a>
+    <a href="category.html?cat=Customer Support" class="cat-item">☎️ Customer Support</a>
+  </div>
+</div>
+
+<div class="jobs">
+  <h2>📋 Latest Jobs</h2>
+
+  <a href="job-details.html?id=1" class="job-link">
+  <div class="job-card">
+    <h3>Web Developer</h3>
+    <p>🏢 TechSol Pvt Ltd</p>
+    <p>📍 Lahore | 💵 60,000 PKR</p>
+  </div>
+  </a>
+
+  <a href="job-details.html?id=2" class="job-link">
+  <div class="job-card">
+    <h3>Graphic Designer</h3>
+    <p>🏢 Creative Studio</p>
+    <p>📍 Karachi | 💵 45,000 PKR</p>
+  </div>
+  </a>
+
+  <a href="job-details.html?id=3" class="job-link">
+  <div class="job-card">
+    <h3>Sales Executive</h3>
+    <p>🏢 MegaMart</p>
+    <p>📍 Islamabad | 💵 40,000 PKR</p>
+  </div>
+  </a>
+
+  <div id="postedJobs"></div>
+  <p class="loading-msg" id="loadingMsg">Naye jobs load ho rahe hain...</p>
+</div>
+
+<div class="post-job">
+  <a href="post-job.html"><button>🏢 Post a Job</button></a>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDpyT6JP3BZaS_FEmlokWaY_-fE4tmjIQQ",
+  authDomain: "jobfinder-pakistan.firebaseapp.com",
+  projectId: "jobfinder-pakistan",
+  storageBucket: "jobfinder-pakistan.firebasestorage.app",
+  messagingSenderId: "823733669210",
+  appId: "1:823733669210:web:99c3b484a1288412f73763"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.doSearch = function() {
+  var title = document.getElementById('searchTitle').value;
+  var location = document.getElementById('searchLocation').value;
+  window.location.href = 'search.html?title=' + encodeURIComponent(title) + '&location=' + encodeURIComponent(location);
+};
+
+async function loadPostedJobs() {
+  var container = document.getElementById('postedJobs');
+  var loadingMsg = document.getElementById('loadingMsg');
+  try {
+    var q = query(collection(db, "jobs"), orderBy("createdAt", "desc"));
+    var snapshot = await getDocs(q);
+    if (snapshot.empty) {
+      loadingMsg.textContent = '';
+      return;
+    }
+    loadingMsg.textContent = '';
+    snapshot.forEach(function(docSnap) {
+      var job = docSnap.data();
+      var html =
+        '<a href="job-details.html?fid=' + docSnap.id + '" class="job-link">' +
+        '<div class="job-card">' +
+        '<h3>' + job.title + '</h3>' +
+        '<p>🏢 ' + job.company + '</p>' +
+        '<p>📍 ' + job.location + ' | 💵 ' + job.salary + '</p>' +
+        '</div></a>';
+      container.innerHTML += html;
+    });
+  } catch (error) {
+    loadingMsg.textContent = '';
+  }
+}
+
+loadPostedJobs();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Details - JobFinder Pakistan</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+  body { background:#f0f2f5; }
+  header { background:linear-gradient(135deg, #0d47a1, #1565c0); color:#fff; padding:18px 20px; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+  header h1 { font-size:18px; }
+  .container { padding:20px; }
+  .job-box { background:#fff; padding:22px; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,0.08); }
+  .job-box h2 { color:#0d47a1; margin-bottom:12px; font-size:22px; }
+  .job-box p { color:#333; margin:7px 0; font-size:15px; }
+  .label { font-weight:bold; color:#0d47a1; }
+  .apply-btn { width:100%; padding:15px; background:linear-gradient(135deg, #ffb300, #ffa000); border:none; border-radius:10px; font-weight:bold; font-size:16px; margin-top:20px; box-shadow:0 4px 12px rgba(255,179,0,0.35); }
+  .back-link { display:block; margin-top:16px; color:#0d47a1; text-decoration:none; text-align:center; font-weight:600; }
+  .desc { margin-top:15px; line-height:1.6; color:#444; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🔎 JobFinder Pakistan</h1>
+</header>
+
+<div class="container">
+  <div class="job-box" id="jobBox">
+    <p>Loading...</p>
+  </div>
+  <a href="index.html" class="back-link">⬅ Back to Home</a>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDpyT6JP3BZaS_FEmlokWaY_-fE4tmjIQQ",
+  authDomain: "jobfinder-pakistan.firebaseapp.com",
+  projectId: "jobfinder-pakistan",
+  storageBucket: "jobfinder-pakistan.firebasestorage.app",
+  messagingSenderId: "823733669210",
+  appId: "1:823733669210:web:99c3b484a1288412f73763"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+var jobs = {
+  "1": {
+    title: "Web Developer",
+    company: "TechSol Pvt Ltd",
+    location: "Lahore",
+    salary: "60,000 PKR",
+    desc: "Hum ek talented Web Developer dhoond rahe hain jo HTML, CSS, JavaScript mein mahir ho. Responsibilities mein website banana, maintain karna aur bugs fix karna shamil hai."
+  },
+  "2": {
+    title: "Graphic Designer",
+    company: "Creative Studio",
+    location: "Karachi",
+    salary: "45,000 PKR",
+    desc: "Creative Studio ko ek Graphic Designer chahiye jo Photoshop aur Illustrator mein expert ho. Social media posts aur branding material design karna hoga."
+  },
+  "3": {
+    title: "Sales Executive",
+    company: "MegaMart",
+    location: "Islamabad",
+    salary: "40,000 PKR",
+    desc: "MegaMart mein Sales Executive ki job hai. Customers ko handle karna, sales targets poore karna aur store management mein madad karna hoga."
+  }
+};
+
+function renderJob(job) {
+  document.getElementById('jobBox').innerHTML =
+    '<h2>' + job.title + '</h2>' +
+    '<p><span class="label">🏢 Company:</span> ' + job.company + '</p>' +
+    '<p><span class="label">📍 Location:</span> ' + job.location + '</p>' +
+    '<p><span class="label">💵 Salary:</span> ' + job.salary + '</p>' +
+    '<div class="desc">' + (job.description || job.desc || '') + '</div>' +
+    '<button class="apply-btn">Apply Now</button>';
+}
+
+var params = new URLSearchParams(window.location.search);
+var id = params.get('id');
+var fid = params.get('fid');
+
+if (id && jobs[id]) {
+  renderJob(jobs[id]);
+} else if (fid) {
+  getDoc(doc(db, "jobs", fid)).then(function(snap) {
+    if (snap.exists()) {
+      renderJob(snap.data());
+    } else {
+      document.getElementById('jobBox').innerHTML = '<p>Job nahi mili.</p>';
+    }
+  }).catch(function() {
+    document.getElementById('jobBox').innerHTML = '<p>Job load nahi ho saki.</p>';
+  });
+} else {
+  document.getElementById('jobBox').innerHTML = '<p>Job nahi mili.</p>';
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Results - JobFinder Pakistan</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+  body { background:#f0f2f5; }
+  header { background:linear-gradient(135deg, #0d47a1, #1565c0); color:#fff; padding:18px 20px; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+  header h1 { font-size:18px; }
+  .container { padding:20px; }
+  .container h2 { color:#0d47a1; margin-bottom:16px; font-size:18px; }
+  .job-card { background:#fff; padding:18px; border-radius:14px; margin-bottom:14px; box-shadow:0 2px 10px rgba(0,0,0,0.08); border-left:4px solid #0d47a1; }
+  .job-card h3 { color:#0d47a1; font-size:17px; margin-bottom:6px; }
+  .job-card p { color:#666; font-size:13.5px; margin:3px 0; }
+  .job-link { text-decoration:none; color:inherit; }
+  .back-link { display:block; margin-top:16px; color:#0d47a1; text-decoration:none; text-align:center; font-weight:600; }
+  .no-jobs { color:#999; text-align:center; padding:30px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🔎 JobFinder Pakistan</h1>
+</header>
+
+<div class="container">
+  <h2 id="searchTitle">Search Results</h2>
+  <div id="jobList"></div>
+  <a href="index.html" class="back-link">⬅ Back to Home</a>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDpyT6JP3BZaS_FEmlokWaY_-fE4tmjIQQ",
+  authDomain: "jobfinder-pakistan.firebaseapp.com",
+  projectId: "jobfinder-pakistan",
+  storageBucket: "jobfinder-pakistan.firebasestorage.app",
+  messagingSenderId: "823733669210",
+  appId: "1:823733669210:web:99c3b484a1288412f73763"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+var allJobs = [
+  { id:1, title:"Web Developer", company:"TechSol Pvt Ltd", location:"Lahore", salary:"60,000 PKR" },
+  { id:2, title:"Graphic Designer", company:"Creative Studio", location:"Karachi", salary:"45,000 PKR" },
+  { id:3, title:"Sales Executive", company:"MegaMart", location:"Islamabad", salary:"40,000 PKR" },
+  { id:4, title:"Accountant", company:"Khan & Sons", location:"Lahore", salary:"50,000 PKR" },
+  { id:5, title:"School Teacher", company:"Bright Future School", location:"Karachi", salary:"35,000 PKR" },
+  { id:6, title:"Delivery Driver", company:"Speedy Logistics", location:"Islamabad", salary:"30,000 PKR" },
+  { id:7, title:"Customer Support Agent", company:"HelpDesk Co", location:"Lahore", salary:"38,000 PKR" }
+];
+
+var params = new URLSearchParams(window.location.search);
+var title = (params.get('title') || '').toLowerCase().trim();
+var loc = (params.get('location') || '').toLowerCase().trim();
+
+document.getElementById('searchTitle').textContent = '🔎 Search Results';
+
+function matches(jobTitle, jobLocation) {
+  var matchTitle = title === '' || jobTitle.toLowerCase().indexOf(title) !== -1;
+  var matchLoc = loc === '' || loc === 'location' || jobLocation.toLowerCase().indexOf(loc) !== -1;
+  return matchTitle && matchLoc;
+}
+
+var listDiv = document.getElementById('jobList');
+var htmlOut = '';
+
+var filtered = allJobs.filter(function(job) { return matches(job.title, job.location); });
+filtered.forEach(function(job) {
+  htmlOut +=
+    '<a href="job-details.html?id=' + job.id + '" class="job-link">' +
+    '<div class="job-card">' +
+    '<h3>' + job.title + '</h3>' +
+    '<p>🏢 ' + job.company + '</p>' +
+    '<p>📍 ' + job.location + ' | 💵 ' + job.salary + '</p>' +
+    '</div></a>';
+});
+
+async function loadFirestoreSearch() {
+  try {
+    var snapshot = await getDocs(collection(db, "jobs"));
+    snapshot.forEach(function(docSnap) {
+      var job = docSnap.data();
+      if (matches(job.title, job.location)) {
+        htmlOut +=
+          '<a href="job-details.html?fid=' + docSnap.id + '" class="job-link">' +
+          '<div class="job-card">' +
+          '<h3>' + job.title + '</h3>' +
+          '<p>🏢 ' + job.company + '</p>' +
+          '<p>📍 ' + job.location + ' | 💵 ' + job.salary + '</p>' +
+          '</div></a>';
+      }
+    });
+  } catch (e) {}
+
+  if (htmlOut === '') {
+    listDiv.innerHTML = '<p class="no-jobs">Koi job nahi mili. Dusra keyword try karein.</p>';
+  } else {
+    listDiv.innerHTML = htmlOut;
+  }
+}
+
+loadFirestoreSearch();
+</script>
+
+</body>
+</html>
