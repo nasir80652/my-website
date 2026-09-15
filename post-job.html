@@ -1,135 +1,124 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Post a Job - JobFinder Pakistan</title>
+<title>Post a Job — JobFinder Pakistan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-  body { background:#f0f2f5; }
-  header { background:linear-gradient(135deg, #0d47a1, #1565c0); color:#fff; padding:18px 20px; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
-  header h1 { font-size:19px; }
-  .container { padding:20px; }
-  .form-box { background:#fff; padding:22px; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,0.08); }
-  .form-box h2 { color:#0d47a1; margin-bottom:18px; font-size:20px; }
-  label { display:block; margin-top:14px; margin-bottom:6px; font-weight:bold; color:#333; font-size:14px; }
-  input, select, textarea { width:100%; padding:12px; border:2px solid #eee; border-radius:10px; font-size:15px; transition:border 0.2s; }
-  input:focus, select:focus, textarea:focus { outline:none; border-color:#0d47a1; }
+  :root{ --navy:#10243E; --navy-deep:#0A1A2E; --amber:#E0983B; --cream:#FAF6EF; --paper:#FFFFFF; --ink:#20242C; --slate:#616B7A; --sage:#5C8C6E; --line:#E7E1D4; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--cream); color:var(--ink); font-family:'Inter',sans-serif; }
+  h1 { font-family:'Fraunces',serif; font-weight:700; color:var(--navy); }
+  a { color:inherit; text-decoration:none; }
+
+  nav { display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-bottom:1px solid var(--line); }
+  .nav-logo { font-family:'Fraunces',serif; font-size:19px; font-weight:700; color:var(--navy); }
+  .nav-logo em { font-style:normal; color:var(--amber); }
+
+  .wrap { padding:30px 20px 50px; max-width:460px; margin:0 auto; }
+  .wrap h1 { font-size:23px; margin-bottom:6px; }
+  .wrap > p { font-size:13px; color:var(--slate); margin-bottom:24px; }
+
+  form { display:flex; flex-direction:column; gap:16px; }
+  label { font-size:12.5px; font-weight:600; color:var(--ink); margin-bottom:5px; display:block; }
+  input, select, textarea { width:100%; padding:12px 13px; border-radius:9px; border:1px solid var(--line); font-size:14px; background:#fff; font-family:'Inter',sans-serif; }
   textarea { resize:vertical; min-height:90px; }
-  .submit-btn { width:100%; padding:15px; background:linear-gradient(135deg, #ffb300, #ffa000); border:none; border-radius:10px; font-weight:bold; font-size:16px; margin-top:22px; box-shadow:0 4px 12px rgba(255,179,0,0.35); transition:transform 0.15s; }
-  .submit-btn:active { transform:scale(0.97); }
-  .msg { text-align:center; margin-top:15px; font-size:14px; font-weight:600; }
-  .back-link { display:block; margin-top:16px; color:#0d47a1; text-decoration:none; text-align:center; font-weight:600; }
+  input:focus, select:focus, textarea:focus { outline:2px solid var(--amber); border-color:var(--amber); }
+
+  .row { display:flex; gap:10px; }
+  .row > div { flex:1; }
+
+  button[type=submit] { margin-top:6px; background:var(--amber); color:var(--navy-deep); border:none; padding:14px; border-radius:100px; font-weight:700; font-size:14.5px; transition:transform .15s ease; }
+  button[type=submit]:active { transform:scale(0.97); }
+
+  .success { display:none; text-align:center; padding:40px 20px; }
+  .success.show { display:block; }
+  .success-icon { width:60px; height:60px; border-radius:50%; background:#E7F0EA; color:var(--sage); font-size:28px; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
+  .success h2 { font-family:'Fraunces',serif; color:var(--navy); font-size:20px; margin-bottom:8px; }
+  .success p { font-size:13px; color:var(--slate); margin-bottom:20px; }
+  .success a { display:inline-block; background:var(--navy); color:#fff; padding:11px 22px; border-radius:100px; font-weight:600; font-size:13px; }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>🔎 JobFinder Pakistan</h1>
-</header>
+<nav>
+  <a href="index.html" class="nav-logo">Job<em>Finder</em></a>
+</nav>
 
-<div class="container">
-  <div class="form-box">
-    <h2>🏢 Post a Job</h2>
+<div class="wrap">
+  <div id="formView">
+    <h1>Post a job</h1>
+    <p>Reach thousands of job seekers across Pakistan in minutes.</p>
 
-    <label>Job Title</label>
-    <input type="text" id="jobTitle" placeholder="e.g. Web Developer">
-
-    <label>Company Name</label>
-    <input type="text" id="companyName" placeholder="e.g. TechSol Pvt Ltd">
-
-    <label>Location</label>
-    <select id="jobLocation">
-      <option>Lahore</option>
-      <option>Karachi</option>
-      <option>Islamabad</option>
-      <option>Peshawar</option>
-    </select>
-
-    <label>Category</label>
-    <select id="jobCategory">
-      <option>IT & Software</option>
-      <option>Marketing</option>
-      <option>Accounting</option>
-      <option>Teaching</option>
-      <option>Driver</option>
-      <option>Customer Support</option>
-    </select>
-
-    <label>Salary (PKR)</label>
-    <input type="text" id="jobSalary" placeholder="e.g. 50,000">
-
-    <label>Job Description</label>
-    <textarea id="jobDesc" placeholder="Job ki tafseel likhein..."></textarea>
-
-    <button class="submit-btn" id="postBtn" onclick="postJob()">Post Job</button>
-    <p class="msg" id="message"></p>
+    <form id="jobForm">
+      <div>
+        <label>Job title</label>
+        <input type="text" id="jTitle" placeholder="e.g. Web Developer" required>
+      </div>
+      <div>
+        <label>Company name</label>
+        <input type="text" id="jCompany" placeholder="e.g. TechSol Pvt Ltd" required>
+      </div>
+      <div class="row">
+        <div>
+          <label>Location</label>
+          <input type="text" id="jLocation" placeholder="e.g. Lahore" required>
+        </div>
+        <div>
+          <label>Salary (PKR)</label>
+          <input type="text" id="jSalary" placeholder="e.g. 50,000" required>
+        </div>
+      </div>
+      <div>
+        <label>Category</label>
+        <select id="jCategory">
+          <option value="IT">IT & Software</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Accounting">Accounting</option>
+          <option value="Teaching">Teaching</option>
+          <option value="Driver">Driver</option>
+          <option value="Support">Customer Support</option>
+        </select>
+      </div>
+      <div>
+        <label>Job description</label>
+        <textarea id="jDesc" placeholder="Describe the role, responsibilities and requirements"></textarea>
+      </div>
+      <button type="submit">Post job</button>
+    </form>
   </div>
-  <a href="index.html" class="back-link">⬅ Back to Home</a>
+
+  <div class="success" id="successView">
+    <div class="success-icon">✓</div>
+    <h2>Job posted</h2>
+    <p>Your listing is now live on JobFinder Pakistan.</p>
+    <a href="index.html">Back to home</a>
+  </div>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+<script>
+  document.getElementById('jobForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const job = {
+      title: document.getElementById('jTitle').value,
+      company: document.getElementById('jCompany').value,
+      location: document.getElementById('jLocation').value,
+      salary: document.getElementById('jSalary').value + ' PKR',
+      category: document.getElementById('jCategory').value,
+      description: document.getElementById('jDesc').value,
+      color: ['10243E','E0983B','5C8C6E','7A5C99','B45B4A'][Math.floor(Math.random()*5)]
+    };
+    const jobs = JSON.parse(localStorage.getItem('jf_jobs') || '[]');
+    jobs.push(job);
+    localStorage.setItem('jf_jobs', JSON.stringify(jobs));
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDpyT6JP3BZaS_FEmlokWaY_-fE4tmjIQQ",
-  authDomain: "jobfinder-pakistan.firebaseapp.com",
-  projectId: "jobfinder-pakistan",
-  storageBucket: "jobfinder-pakistan.firebasestorage.app",
-  messagingSenderId: "823733669210",
-  appId: "1:823733669210:web:99c3b484a1288412f73763"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-window.postJob = function() {
-  var title = document.getElementById('jobTitle').value.trim();
-  var company = document.getElementById('companyName').value.trim();
-  var location = document.getElementById('jobLocation').value;
-  var category = document.getElementById('jobCategory').value;
-  var salary = document.getElementById('jobSalary').value.trim();
-  var desc = document.getElementById('jobDesc').value.trim();
-  var msg = document.getElementById('message');
-  var btn = document.getElementById('postBtn');
-
-  if (title === '' || company === '' || salary === '') {
-    msg.style.color = 'red';
-    msg.textContent = 'Job Title, Company aur Salary zaroor bharein';
-    return;
-  }
-
-  btn.disabled = true;
-  btn.textContent = 'Posting...';
-
-  addDoc(collection(db, "jobs"), {
-    title: title,
-    company: company,
-    location: location,
-    category: category,
-    salary: salary,
-    description: desc,
-    createdAt: serverTimestamp()
-  })
-  .then(function() {
-    msg.style.color = 'green';
-    msg.textContent = 'Job successfully post ho gayi!';
-    btn.disabled = false;
-    btn.textContent = 'Post Job';
-    document.getElementById('jobTitle').value = '';
-    document.getElementById('companyName').value = '';
-    document.getElementById('jobSalary').value = '';
-    document.getElementById('jobDesc').value = '';
-  })
-  .catch(function(error) {
-    msg.style.color = 'red';
-    msg.textContent = 'Error: ' + error.message;
-    btn.disabled = false;
-    btn.textContent = 'Post Job';
+    document.getElementById('formView').style.display = 'none';
+    document.getElementById('successView').classList.add('show');
   });
-};
 </script>
 
 </body>
-</html>
+ </html>
+ 
