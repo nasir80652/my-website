@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JobFinder Pakistan</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+  body { background:#f4f6f9; color:#222; }
+
+  .hero {
+    position: relative;
+    min-height: 520px;
+    background-image: linear-gradient(rgba(26,63,160,0.75), rgba(26,63,160,0.85)), url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .hero-top { display:flex; justify-content:space-between; align-items:flex-start; }
+  .logo-text { font-size: 28px; font-weight:900; letter-spacing:1px; }
+  .logo-text span { color:#ffb703; }
+
+  .hero-mid { text-align:center; margin: 25px 0; }
+  .tagline-ur { font-size: 26px; font-weight:800; margin-bottom:6px; }
+  .tagline-en { font-size: 15px; font-weight:400; opacity:0.9; }
+
+  .search-box {
+    background:#fff; border-radius:12px; padding:6px; display:flex; align-items:center;
+    margin: 20px 0 15px;
+  }
+  .search-box input { flex:1; border:none; outline:none; padding:10px; font-size:15px; color:#222; }
+  .search-box button { background:#1a3fa0; border:none; color:#fff; padding:10px 16px; border-radius:8px; font-size:16px; }
+
+  .hero-btns { display:flex; gap:12px; }
+  .hero-btns a { flex:1; text-align:center; padding:13px; border-radius:8px; font-weight:800; text-decoration:none; font-size:15px; }
+  .btn-outline { border:2px solid #fff; color:#fff; }
+  .btn-solid { background:#2fa84f; color:#fff; }
+
+  .section { padding: 25px 18px; }
+  .section h2 { font-size:20px; margin-bottom:15px; display:flex; align-items:center; gap:8px; }
+
+  .categories { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+  .cat-card { background:#fff; border-radius:14px; padding:18px 10px; text-align:center; font-weight:700; box-shadow:0 3px 10px rgba(0,0,0,0.06); font-size:15px; }
+  .cat-card span { display:block; font-size:26px; margin-bottom:6px; }
+
+  .job-card {
+    background:#fff; border-radius:16px; padding:18px; margin-bottom:15px;
+    display:flex; gap:14px; align-items:center; box-shadow:0 3px 12px rgba(0,0,0,0.07);
+    text-decoration:none; color:#222; border-left:5px solid #1a3fa0;
+  }
+  .job-card img { width:55px; height:55px; border-radius:50%; flex-shrink:0; }
+  .job-info h3 { font-size:17px; margin-bottom:4px; }
+  .job-info p { font-size:13.5px; color:#555; margin-top:2px; }
+  .job-info .salary { color:#1a8f4c; font-weight:700; }
+
+  .post-job { text-align:center; margin: 20px 0 30px; }
+  .post-job a { display:inline-block; background:#1a3fa0; color:#fff; text-decoration:none; padding:14px 30px; border-radius:25px; font-weight:700; font-size:15px; }
+
+  footer { background:#111; color:#aaa; text-align:center; padding:20px; font-size:13px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="logo-text">Job<span>Finder</span><br>Pakistan</div>
+  </div>
+
+  <div class="hero-mid">
+    <div class="tagline-ur">بہتر نوکری ڈھونڈیں</div>
+    <div class="tagline-en">Better Jobs, Better Future</div>
+
+    <div class="search-box">
+      <input type="text" placeholder="نوکری تلاش کریں / Search Jobs">
+      <button onclick="location.href='search.html'">🔍</button>
+    </div>
+  </div>
+
+  <div class="hero-btns">
+    <a href="post-job.html" class="btn-outline">EMPLOYER</a>
+    <a href="login.html" class="btn-solid">لاگ ان / LOGIN</a>
+  </div>
+</div>
+
+<div class="section">
+  <h2>💼 Job Categories</h2>
+  <div class="categories">
+    <div class="cat-card"><span>💻</span>IT & Software</div>
+    <div class="cat-card"><span>📢</span>Marketing</div>
+    <div class="cat-card"><span>💰</span>Accounting</div>
+    <div class="cat-card"><span>📚</span>Teaching</div>
+    <div class="cat-card"><span>🚗</span>Driver</div>
+    <div class="cat-card"><span>☎️</span>Customer Support</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>📋 Latest Jobs</h2>
+
+  <a href="job-details.html?id=1" class="job-card">
+    <img src="https://ui-avatars.com/api/?name=TechSol&background=0D47A1&color=fff&size=100" alt="TechSol logo">
+    <div class="job-info">
+      <h3>Web Developer</h3>
+      <p>🏢 TechSol Pvt Ltd</p>
+      <p>📍 Lahore | <span class="salary">💵 60,000 PKR</span></p>
+    </div>
+  </a>
+
+  <a href="job-details.html?id=2" class="job-card">
+    <img src="https://ui-avatars.com/api/?name=Creative+Studio&background=E91E63&color=fff&size=100" alt="Creative Studio logo">
+    <div class="job-info">
+      <h3>Graphic Designer</h3>
+      <p>🏢 Creative Studio</p>
+      <p>📍 Karachi | <span class="salary">💵 45,000 PKR</span></p>
+    </div>
+  </a>
+
+  <a href="job-details.html?id=3" class="job-card">
+    <img src="https://ui-avatars.com/api/?name=MegaMart&background=4CAF50&color=fff&size=100" alt="MegaMart logo">
+    <div class="job-info">
+      <h3>Sales Executive</h3>
+      <p>🏢 MegaMart</p>
+      <p>📍 Islamabad | <span class="salary">💵 40,000 PKR</span></p>
+    </div>
+  </a>
+
+  <div id="postedJobs"></div>
+  <p class="loading-msg" id="loadingMsg"></p>
+</div>
+
+<div class="post-job">
+  <a href="post-job.html">🏢 Post a Job</a>
+</div>
+
+<footer>
+  © 2026 JobFinder Pakistan — All rights reserved.
+</footer>
+
+</body>
+</html>
