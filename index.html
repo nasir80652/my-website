@@ -1,160 +1,330 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JobFinder Pakistan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-  body { background:#f0f2f5; }
-  header { background:linear-gradient(135deg, #0d47a1, #1565c0); color:#fff; padding:18px 20px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
-  header h1 { font-size:21px; letter-spacing:0.5px; }
-  .auth-buttons button { background:#fff; color:#0d47a1; border:none; padding:9px 16px; margin-left:8px; border-radius:20px; font-weight:bold; font-size:13px; box-shadow:0 2px 4px rgba(0,0,0,0.1); transition:transform 0.15s; }
-  .auth-buttons button:active { transform:scale(0.95); }
-  .search-box { background:linear-gradient(135deg, #0d47a1, #1976d2); padding:25px 20px; text-align:center; }
-  .search-box input, .search-box select { padding:12px; margin:6px 0; border-radius:8px; border:none; width:100%; max-width:340px; font-size:15px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-  .search-box button { padding:12px 30px; background:#ffb300; border:none; border-radius:25px; font-weight:bold; margin-top:12px; font-size:15px; box-shadow:0 3px 8px rgba(255,179,0,0.4); transition:transform 0.15s; }
-  .search-box button:active { transform:scale(0.96); }
-  .categories { padding:25px 20px; }
-  .categories h2 { margin-bottom:14px; color:#1a1a1a; font-size:19px; }
-  .cat-list { display:flex; flex-wrap:wrap; gap:12px; }
-  .cat-item { background:#fff; padding:14px 18px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-decoration:none; color:#333; font-weight:600; font-size:14px; transition:transform 0.15s, box-shadow 0.15s; display:flex; align-items:center; gap:6px; }
-  .cat-item:active { transform:scale(0.96); box-shadow:0 1px 3px rgba(0,0,0,0.1); }
-  .jobs { padding:25px 20px; }
-  .jobs h2 { margin-bottom:14px; color:#1a1a1a; font-size:19px; }
-  .job-card { background:#fff; padding:18px; border-radius:14px; margin-bottom:14px; box-shadow:0 2px 10px rgba(0,0,0,0.08); border-left:4px solid #0d47a1; transition:transform 0.15s; }
-  .job-card:active { transform:scale(0.98); }
-  .job-card h3 { color:#0d47a1; font-size:17px; margin-bottom:6px; }
-  .job-card p { color:#666; font-size:13.5px; margin:3px 0; }
-  .post-job { text-align:center; padding:30px 20px; }
-  .post-job a { text-decoration:none; }
-  .post-job button { background:linear-gradient(135deg, #0d47a1, #1565c0); color:#fff; padding:15px 35px; border:none; border-radius:25px; font-weight:bold; font-size:16px; box-shadow:0 4px 12px rgba(13,71,161,0.3); transition:transform 0.15s; }
-  .post-job button:active { transform:scale(0.96); }
-  .job-link { text-decoration:none; color:inherit; }
-  .loading-msg { text-align:center; color:#999; padding:15px; font-size:14px; }
+  :root{
+    --navy:#10243E;
+    --navy-deep:#0A1A2E;
+    --amber:#E0983B;
+    --cream:#FAF6EF;
+    --paper:#FFFFFF;
+    --ink:#20242C;
+    --slate:#616B7A;
+    --sage:#5C8C6E;
+    --line:#E7E1D4;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--cream); color:var(--ink); font-family:'Inter',sans-serif; line-height:1.5; }
+  h1,h2,h3,h4 { font-family:'Fraunces',serif; font-weight:700; color:var(--navy); }
+  .urdu { font-family:'Noto Nastaliq Urdu',serif; }
+  a { color:inherit; }
+  img { display:block; max-width:100%; }
+
+  /* NAV */
+  nav {
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 16px 20px; background:var(--cream);
+    position:sticky; top:0; z-index:20; border-bottom:1px solid var(--line);
+  }
+  .nav-logo { font-family:'Fraunces',serif; font-size:19px; font-weight:700; color:var(--navy); }
+  .nav-logo em { font-style:normal; color:var(--amber); }
+  .nav-menu { display:flex; gap:16px; font-size:13px; align-items:center; }
+  .nav-menu a { text-decoration:none; color:var(--ink); font-weight:500; }
+  .nav-menu .login-btn { border:1.5px solid var(--navy); padding:7px 16px; border-radius:100px; font-weight:600; }
+
+  /* HERO */
+  .hero {
+    background:var(--navy);
+    color:#fff; padding: 34px 20px 44px;
+    position:relative; overflow:hidden;
+  }
+  .hero-eyebrow { font-size:12.5px; color:#B7C4D6; margin-bottom:10px; }
+  .hero h1 { font-size:29px; color:#fff; line-height:1.18; margin-bottom:12px; }
+  .hero-ur { font-size:22px; color:var(--amber); margin-bottom:14px; }
+  .hero-sub { font-size:13.5px; color:#C7D0DE; max-width:340px; margin-bottom:22px; }
+
+  .photo-wrap {
+    position:relative; width:100%; height:210px; margin:0 0 22px; border-radius:18px; overflow:hidden;
+    box-shadow:0 14px 30px rgba(0,0,0,0.35);
+  }
+  .photo-wrap img {
+    width:100%; height:100%; object-fit:cover; object-position:center 18%;
+  }
+  .photo-wrap::after {
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(16,36,62,0) 55%, rgba(16,36,62,0.55) 100%);
+  }
+  .stat-float {
+    position:absolute; bottom:12px; left:14px; background:var(--amber); color:var(--navy-deep);
+    padding:8px 12px; border-radius:12px; font-size:11px; font-weight:700; line-height:1.2;
+    box-shadow:0 8px 18px rgba(0,0,0,0.25); z-index:2;
+  }
+
+  .search-box {
+    background:#fff; border-radius:10px; padding:5px; display:flex; align-items:center;
+    box-shadow:0 10px 24px rgba(0,0,0,0.25);
+  }
+  .search-box input { flex:1; border:none; outline:none; padding:11px 10px; font-size:14.5px; color:var(--ink); font-family:'Inter',sans-serif; }
+  .search-box button {
+    background:var(--amber); border:none; color:var(--navy-deep); font-weight:700; padding:11px 16px;
+    border-radius:7px; font-size:13.5px; display:flex; align-items:center; gap:6px;
+  }
+
+  /* STATS STRIP */
+  .stats-strip {
+    display:flex; background:var(--paper); padding:20px 10px; text-align:center;
+    border-bottom:1px solid var(--line);
+  }
+  .stats-strip > div { flex:1; position:relative; }
+  .stats-strip > div:not(:last-child)::after {
+    content:''; position:absolute; right:0; top:8%; height:84%; width:1px; background:var(--line);
+  }
+  .stat-num { font-family:'Fraunces',serif; font-size:23px; font-weight:700; color:var(--navy); }
+  .stat-label { font-size:11px; color:var(--slate); margin-top:3px; }
+
+  .section { padding: 32px 20px; }
+  .section-head { margin-bottom:20px; }
+  .section-head h2 { font-size:21px; }
+  .section-head p { font-size:12.5px; color:var(--slate); margin-top:4px; }
+
+  /* HOW IT WORKS - timeline */
+  .timeline { position:relative; padding-left:34px; }
+  .timeline::before { content:''; position:absolute; left:13px; top:6px; bottom:6px; width:2px; background:var(--line); }
+  .tl-step { position:relative; margin-bottom:26px; }
+  .tl-step:last-child { margin-bottom:0; }
+  .tl-dot {
+    position:absolute; left:-34px; top:0; width:28px; height:28px; border-radius:50%;
+    background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:700; font-size:13px;
+  }
+  .tl-step h4 { font-size:15.5px; margin-bottom:3px; color:var(--ink); font-family:'Inter',sans-serif; font-weight:700; }
+  .tl-step p { font-size:12.5px; color:var(--slate); }
+
+  /* COMPANIES */
+  .companies { display:flex; gap:12px; overflow-x:auto; padding-bottom:4px; }
+  .company-chip {
+    background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:12px 16px;
+    text-align:center; flex-shrink:0; font-size:12px; font-weight:600; min-width:88px; color:var(--slate);
+  }
+  .company-chip img { width:32px; height:32px; border-radius:50%; margin:0 auto 6px; }
+
+  /* CATEGORIES - tag cloud */
+  .cat-cloud { display:flex; flex-wrap:wrap; gap:10px; }
+  .cat-pill {
+    display:flex; align-items:center; gap:7px; padding:10px 15px; border-radius:100px;
+    font-size:13px; font-weight:600; color:var(--navy);
+  }
+  .cat-pill:nth-child(6n+1){background:#E7EEE9;}
+  .cat-pill:nth-child(6n+2){background:#F3E7D8;}
+  .cat-pill:nth-child(6n+3){background:#E6EBF2;}
+  .cat-pill:nth-child(6n+4){background:#F0E3E3;}
+  .cat-pill:nth-child(6n+5){background:#E9E4F0;}
+  .cat-pill:nth-child(6n+6){background:#E1EEF0;}
+
+  /* JOB LIST */
+  .job-card {
+    background:var(--paper); border-radius:12px; padding:18px; margin-bottom:13px;
+    display:flex; gap:14px; align-items:center; text-decoration:none; color:var(--ink);
+    border-left:3px solid var(--navy); border-top:1px solid var(--line); border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .job-card img { width:50px; height:50px; border-radius:10px; flex-shrink:0; }
+  .job-info h3 { font-size:16px; margin-bottom:3px; font-family:'Inter',sans-serif; color:var(--ink); font-weight:700; }
+  .job-info p { font-size:12.5px; color:var(--slate); margin-top:2px; }
+  .salary-tag {
+    display:inline-block; background:#E7F0EA; color:var(--sage); font-weight:700; font-size:11.5px;
+    padding:3px 9px; border-radius:100px; margin-top:5px;
+  }
+
+  /* TESTIMONIALS */
+  .testi-card { background:#F3EADA; border-radius:14px; padding:22px; margin-bottom:14px; }
+  .quote-mark { font-family:'Fraunces',serif; font-size:40px; color:var(--amber); line-height:0.5; margin-bottom:8px; display:block; }
+  .testi-card p { font-family:'Fraunces',serif; font-style:italic; font-size:15px; color:var(--navy); margin-bottom:14px; }
+  .testi-user { display:flex; align-items:center; gap:10px; }
+  .testi-user img { width:34px; height:34px; border-radius:50%; }
+  .testi-name { font-size:12.5px; font-weight:700; color:var(--ink); }
+  .testi-role { font-size:11px; color:var(--slate); }
+
+  /* APP DOWNLOAD */
+  .app-section { background:var(--navy-deep); color:#fff; padding:32px 20px; text-align:center; }
+  .app-section h2 { color:#fff; font-size:20px; margin-bottom:8px; }
+  .app-section p { font-size:13px; color:#B7C4D6; margin-bottom:18px; }
+  .app-btns { display:flex; gap:10px; justify-content:center; }
+  .app-btns a { border:1.5px solid rgba(255,255,255,0.4); color:#fff; text-decoration:none; padding:10px 18px; border-radius:9px; font-weight:600; font-size:12.5px; }
+
+  .post-job { text-align:center; padding: 30px 20px; }
+  .post-job a {
+    display:inline-block; background:var(--amber); color:var(--navy-deep); text-decoration:none;
+    padding:14px 32px; border-radius:100px; font-weight:700; font-size:14.5px;
+  }
+
+  /* FOOTER */
+  footer { background:var(--navy-deep); color:#B7C4D6; padding:32px 20px 20px; }
+  .footer-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-bottom:22px; }
+  .footer-col h4 { font-size:13px; color:#fff; margin-bottom:10px; font-family:'Inter',sans-serif; }
+  .footer-col a { display:block; color:#9AA7BA; text-decoration:none; font-size:12px; margin-bottom:9px; }
+  .social-icons { display:flex; gap:10px; margin-top:6px; }
+  .social-icons a { border:1px solid rgba(255,255,255,0.2); width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; text-decoration:none; }
+  .footer-bottom { text-align:center; font-size:11px; color:#6C7A8E; border-top:1px solid rgba(255,255,255,0.1); padding-top:16px; }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>🔎 JobFinder Pakistan</h1>
-  <div class="auth-buttons">
-    <a href="login.html"><button>Login</button></a>
-    <a href="login.html"><button>Signup</button></a>
+<nav>
+  <div class="nav-logo">Job<em>Finder</em></div>
+  <div class="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="search.html">Jobs</a>
+    <a href="login.html" class="login-btn">Login</a>
   </div>
-</header>
+</nav>
 
-<div class="search-box">
-  <input type="text" id="searchTitle" placeholder="Job Title (e.g. Developer)">
-  <select id="searchLocation">
-    <option>Location</option>
-    <option>Karachi</option>
-    <option>Lahore</option>
-    <option>Islamabad</option>
-    <option>Peshawar</option>
-  </select>
-  <br>
-  <button onclick="doSearch()">🔍 Search Jobs</button>
-</div>
+<div class="hero">
+  <div class="hero-eyebrow">Pakistan's growing job network</div>
+  <h1>Find work that actually fits your life</h1>
+  <div class="hero-ur urdu">بہتر نوکری، بہتر مستقبل</div>
+  <p class="hero-sub">Thousands of verified listings from real companies across Lahore, Karachi, Islamabad and beyond.</p>
 
-<div class="categories">
-  <h2>💼 Job Categories</h2>
-  <div class="cat-list">
-    <a href="category.html?cat=IT %26 Software" class="cat-item">💻 IT & Software</a>
-    <a href="category.html?cat=Marketing" class="cat-item">📢 Marketing</a>
-    <a href="category.html?cat=Accounting" class="cat-item">💰 Accounting</a>
-    <a href="category.html?cat=Teaching" class="cat-item">📚 Teaching</a>
-    <a href="category.html?cat=Driver" class="cat-item">🚗 Driver</a>
-    <a href="category.html?cat=Customer Support" class="cat-item">☎️ Customer Support</a>
+  <div class="photo-wrap">
+    <img src="profile.jpg" alt="Founder, JobFinder Pakistan">
+    <div class="stat-float">20,000+<br>job seekers</div>
+  </div>
+
+  <div class="search-box">
+    <input type="text" placeholder="Search jobs, e.g. Developer">
+    <button onclick="location.href='search.html'">Search</button>
   </div>
 </div>
 
-<div class="jobs">
-  <h2>📋 Latest Jobs</h2>
+<div class="stats-strip">
+  <div><div class="stat-num">5,000+</div><div class="stat-label">Jobs Posted</div></div>
+  <div><div class="stat-num">800+</div><div class="stat-label">Companies</div></div>
+  <div><div class="stat-num">20,000+</div><div class="stat-label">Job Seekers</div></div>
+</div>
 
-  <a href="job-details.html?id=1" class="job-link">
-  <div class="job-card">
-    <h3>Web Developer</h3>
-    <p>🏢 TechSol Pvt Ltd</p>
-    <p>📍 Lahore | 💵 60,000 PKR</p>
+<div class="section">
+  <div class="section-head"><h2>How it works</h2><p>Three steps from sign-up to your first day</p></div>
+  <div class="timeline">
+    <div class="tl-step"><div class="tl-dot">1</div><h4>Create your profile</h4><p>Sign up free and tell us what you're looking for.</p></div>
+    <div class="tl-step"><div class="tl-dot">2</div><h4>Search and apply</h4><p>Filter by city, salary and category to find the right fit.</p></div>
+    <div class="tl-step"><div class="tl-dot">3</div><h4>Hear back from employers</h4><p>Companies message you directly — no middleman.</p></div>
   </div>
-  </a>
+</div>
 
-  <a href="job-details.html?id=2" class="job-link">
-  <div class="job-card">
-    <h3>Graphic Designer</h3>
-    <p>🏢 Creative Studio</p>
-    <p>📍 Karachi | 💵 45,000 PKR</p>
+<div class="section" style="padding-top:0;">
+  <div class="section-head"><h2>Featured companies</h2></div>
+  <div class="companies">
+    <div class="company-chip"><img src="https://ui-avatars.com/api/?name=TechSol&background=10243E&color=fff">TechSol</div>
+    <div class="company-chip"><img src="https://ui-avatars.com/api/?name=Creative+Studio&background=E0983B&color=fff">Creative Studio</div>
+    <div class="company-chip"><img src="https://ui-avatars.com/api/?name=MegaMart&background=5C8C6E&color=fff">MegaMart</div>
+    <div class="company-chip"><img src="https://ui-avatars.com/api/?name=NextGen&background=7A5C99&color=fff">NextGen</div>
+    <div class="company-chip"><img src="https://ui-avatars.com/api/?name=SkyTech&background=B45B4A&color=fff">SkyTech</div>
   </div>
-  </a>
+</div>
 
-  <a href="job-details.html?id=3" class="job-link">
-  <div class="job-card">
-    <h3>Sales Executive</h3>
-    <p>🏢 MegaMart</p>
-    <p>📍 Islamabad | 💵 40,000 PKR</p>
+<div class="section" style="padding-top:0;">
+  <div class="section-head"><h2>Browse by category</h2></div>
+  <div class="cat-cloud">
+    <div class="cat-pill">💻 IT & Software</div>
+    <div class="cat-pill">📢 Marketing</div>
+    <div class="cat-pill">💰 Accounting</div>
+    <div class="cat-pill">📚 Teaching</div>
+    <div class="cat-pill">🚗 Driver</div>
+    <div class="cat-pill">☎️ Customer Support</div>
   </div>
-  </a>
+</div>
 
+<div class="section" style="padding-top:0;">
+  <div class="section-head"><h2>Latest jobs</h2></div>
+
+  <a href="job-details.html?id=1" class="job-card">
+    <img src="https://ui-avatars.com/api/?name=TechSol&background=10243E&color=fff&size=100">
+    <div class="job-info">
+      <h3>Web Developer</h3>
+      <p>TechSol Pvt Ltd · Lahore</p>
+      <span class="salary-tag">60,000 PKR</span>
+    </div>
+  </a>
+  <a href="job-details.html?id=2" class="job-card">
+    <img src="https://ui-avatars.com/api/?name=Creative+Studio&background=E0983B&color=fff&size=100">
+    <div class="job-info">
+      <h3>Graphic Designer</h3>
+      <p>Creative Studio · Karachi</p>
+      <span class="salary-tag">45,000 PKR</span>
+    </div>
+  </a>
+  <a href="job-details.html?id=3" class="job-card">
+    <img src="https://ui-avatars.com/api/?name=MegaMart&background=5C8C6E&color=fff&size=100">
+    <div class="job-info">
+      <h3>Sales Executive</h3>
+      <p>MegaMart · Islamabad</p>
+      <span class="salary-tag">40,000 PKR</span>
+    </div>
+  </a>
   <div id="postedJobs"></div>
-  <p class="loading-msg" id="loadingMsg">Naye jobs load ho rahe hain...</p>
+  <p class="loading-msg" id="loadingMsg"></p>
+</div>
+
+<div class="section" style="padding-top:0;">
+  <div class="section-head"><h2>What people say</h2></div>
+  <div class="testi-card">
+    <span class="quote-mark">"</span>
+    <p>I found my job within a week of signing up. The process felt honest, not like scrolling through fake listings.</p>
+    <div class="testi-user">
+      <img src="https://ui-avatars.com/api/?name=Ali+Khan&background=10243E&color=fff">
+      <div><div class="testi-name">Ali Khan</div><div class="testi-role">Web Developer, Lahore</div></div>
+    </div>
+  </div>
+  <div class="testi-card">
+    <span class="quote-mark">"</span>
+    <p>As an employer, posting a job took minutes and we heard from qualified candidates the same day.</p>
+    <div class="testi-user">
+      <img src="https://ui-avatars.com/api/?name=Sara+Ahmed&background=E0983B&color=fff">
+      <div><div class="testi-name">Sara Ahmed</div><div class="testi-role">HR Manager, MegaMart</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="app-section">
+  <h2>Take it with you</h2>
+  <p>Search and apply for jobs from your phone, anytime</p>
+  <div class="app-btns">
+    <a href="#">Google Play</a>
+    <a href="#">App Store</a>
+  </div>
 </div>
 
 <div class="post-job">
-  <a href="post-job.html"><button>🏢 Post a Job</button></a>
+  <a href="post-job.html">Post a job</a>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDpyT6JP3BZaS_FEmlokWaY_-fE4tmjIQQ",
-  authDomain: "jobfinder-pakistan.firebaseapp.com",
-  projectId: "jobfinder-pakistan",
-  storageBucket: "jobfinder-pakistan.firebasestorage.app",
-  messagingSenderId: "823733669210",
-  appId: "1:823733669210:web:99c3b484a1288412f73763"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-window.doSearch = function() {
-  var title = document.getElementById('searchTitle').value;
-  var location = document.getElementById('searchLocation').value;
-  window.location.href = 'search.html?title=' + encodeURIComponent(title) + '&location=' + encodeURIComponent(location);
-};
-
-async function loadPostedJobs() {
-  var container = document.getElementById('postedJobs');
-  var loadingMsg = document.getElementById('loadingMsg');
-  try {
-    var q = query(collection(db, "jobs"), orderBy("createdAt", "desc"));
-    var snapshot = await getDocs(q);
-    if (snapshot.empty) {
-      loadingMsg.textContent = '';
-      return;
-    }
-    loadingMsg.textContent = '';
-    snapshot.forEach(function(docSnap) {
-      var job = docSnap.data();
-      var html =
-        '<a href="job-details.html?fid=' + docSnap.id + '" class="job-link">' +
-        '<div class="job-card">' +
-        '<h3>' + job.title + '</h3>' +
-        '<p>🏢 ' + job.company + '</p>' +
-        '<p>📍 ' + job.location + ' | 💵 ' + job.salary + '</p>' +
-        '</div></a>';
-      container.innerHTML += html;
-    });
-  } catch (error) {
-    loadingMsg.textContent = '';
-  }
-}
-
-loadPostedJobs();
-</script>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About us</a>
+      <a href="#">Contact</a>
+      <a href="#">Careers</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Help center</a>
+      <a href="#">Privacy policy</a>
+      <a href="#">Terms of service</a>
+    </div>
+  </div>
+  <div class="social-icons">
+    <a href="#">f</a>
+    <a href="#">in</a>
+    <a href="#">ig</a>
+  </div>
+  <div class="footer-bottom">© 2026 JobFinder Pakistan — All rights reserved.</div>
+</footer>
 
 </body>
-</html>
+                                           </html>
+ 
