@@ -1,145 +1,100 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - JobFinder Pakistan</title>
+<title>Login — JobFinder Pakistan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-  body { background:linear-gradient(135deg, #0d47a1, #1976d2); display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px; }
-  .box { background:#fff; padding:35px 25px; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,0.25); width:100%; max-width:380px; }
-  .box h2 { color:#0d47a1; text-align:center; margin-bottom:22px; font-size:22px; }
-  .tabs { display:flex; margin-bottom:22px; border-radius:25px; overflow:hidden; background:#f0f2f5; padding:4px; }
-  .tabs button { flex:1; padding:11px; border:none; background:transparent; color:#0d47a1; font-weight:bold; border-radius:20px; transition:all 0.2s; }
-  .tabs button.active { background:#0d47a1; color:#fff; box-shadow:0 2px 6px rgba(13,71,161,0.3); }
-  input { width:100%; padding:13px; margin-bottom:14px; border:2px solid #eee; border-radius:10px; font-size:15px; transition:border 0.2s; }
-  input:focus { outline:none; border-color:#0d47a1; }
-  .submit-btn { width:100%; padding:14px; background:linear-gradient(135deg, #ffb300, #ffa000); border:none; border-radius:10px; font-weight:bold; font-size:16px; box-shadow:0 4px 12px rgba(255,179,0,0.35); transition:transform 0.15s; }
-  .submit-btn:active { transform:scale(0.97); }
-  .msg { text-align:center; margin-top:14px; font-size:14px; font-weight:600; }
-  .back-link { display:block; text-align:center; margin-top:18px; color:#0d47a1; text-decoration:none; font-weight:600; font-size:14px; }
+  :root{ --navy:#10243E; --navy-deep:#0A1A2E; --amber:#E0983B; --cream:#FAF6EF; --paper:#FFFFFF; --ink:#20242C; --slate:#616B7A; --line:#E7E1D4; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--cream); color:var(--ink); font-family:'Inter',sans-serif; min-height:100vh; }
+  h1 { font-family:'Fraunces',serif; font-weight:700; color:var(--navy); }
+  a { color:inherit; text-decoration:none; }
+
+  nav { display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-bottom:1px solid var(--line); }
+  .nav-logo { font-family:'Fraunces',serif; font-size:19px; font-weight:700; color:var(--navy); }
+  .nav-logo em { font-style:normal; color:var(--amber); }
+
+  .wrap { padding:40px 22px; max-width:420px; margin:0 auto; }
+  .wrap h1 { font-size:25px; margin-bottom:6px; }
+  .wrap > p { font-size:13px; color:var(--slate); margin-bottom:24px; }
+
+  .tabs { display:flex; background:#EFE9DB; border-radius:10px; padding:4px; margin-bottom:24px; }
+  .tab { flex:1; text-align:center; padding:10px; border-radius:8px; font-size:13.5px; font-weight:600; cursor:pointer; color:var(--slate); }
+  .tab.active { background:#fff; color:var(--navy); box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+
+  form { display:flex; flex-direction:column; gap:14px; }
+  label { font-size:12.5px; font-weight:600; color:var(--ink); margin-bottom:5px; display:block; }
+  input, select { width:100%; padding:12px 13px; border-radius:9px; border:1px solid var(--line); font-size:14px; background:#fff; font-family:'Inter',sans-serif; }
+  input:focus, select:focus { outline:2px solid var(--amber); border-color:var(--amber); }
+
+  .signup-only { display:none; }
+  body.signup-mode .signup-only { display:block; }
+  body.signup-mode .login-only { display:none; }
+
+  button[type=submit] {
+    margin-top:6px; background:var(--navy); color:#fff; border:none; padding:13px; border-radius:9px;
+    font-weight:700; font-size:14.5px; transition:transform .15s ease;
+  }
+  button[type=submit]:active { transform:scale(0.97); }
+
+  .switch-line { text-align:center; font-size:12.5px; color:var(--slate); margin-top:18px; }
+  .switch-line span { color:var(--navy); font-weight:700; cursor:pointer; }
 </style>
 </head>
 <body>
 
-<div class="box">
-  <h2>🔎 JobFinder Pakistan</h2>
+<nav>
+  <a href="index.html" class="nav-logo">Job<em>Finder</em></a>
+</nav>
+
+<div class="wrap">
+  <h1 class="tab-title">Welcome back</h1>
+  <p class="tab-sub">Log in to manage your applications</p>
 
   <div class="tabs">
-    <button id="loginTab" class="active" onclick="showLogin()">Login</button>
-    <button id="signupTab" onclick="showSignup()">Signup</button>
+    <div class="tab active" id="tabLogin" onclick="setMode(false)">Login</div>
+    <div class="tab" id="tabSignup" onclick="setMode(true)">Signup</div>
   </div>
 
-  <div id="loginForm">
-    <input type="email" id="loginEmail" placeholder="📧 Email">
-    <input type="password" id="loginPass" placeholder="🔒 Password">
-    <button class="submit-btn" onclick="doLogin()">Login</button>
-  </div>
+  <form onsubmit="event.preventDefault(); alert('This is a demo form — connect it to a backend to make it live.');">
+    <div class="signup-only">
+      <label>Full name</label>
+      <input type="text" placeholder="Your name">
+    </div>
+    <div>
+      <label>Email</label>
+      <input type="email" placeholder="you@example.com" required>
+    </div>
+    <div>
+      <label>Password</label>
+      <input type="password" placeholder="••••••••" required>
+    </div>
+    <div class="signup-only">
+      <label>I am a</label>
+      <select>
+        <option>Job Seeker</option>
+        <option>Employer</option>
+      </select>
+    </div>
+    <button type="submit" id="submitBtn">Log in</button>
+  </form>
 
-  <div id="signupForm" style="display:none;">
-    <input type="text" id="signupName" placeholder="👤 Full Name">
-    <input type="email" id="signupEmail" placeholder="📧 Email">
-    <input type="password" id="signupPass" placeholder="🔒 Password (6+ characters)">
-    <button class="submit-btn" onclick="doSignup()">Create Account</button>
-  </div>
-
-  <p class="msg" id="message"></p>
-  <a href="index.html" class="back-link">⬅ Back to Home</a>
+  <div class="switch-line login-only">Don't have an account? <span onclick="setMode(true)">Sign up</span></div>
+  <div class="switch-line signup-only">Already have an account? <span onclick="setMode(false)">Log in</span></div>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDpyT6JP3BZaS_FEmlokWaY_-fE4tmjIQQ",
-  authDomain: "jobfinder-pakistan.firebaseapp.com",
-  projectId: "jobfinder-pakistan",
-  storageBucket: "jobfinder-pakistan.firebasestorage.app",
-  messagingSenderId: "823733669210",
-  appId: "1:823733669210:web:99c3b484a1288412f73763"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-window.showLogin = function() {
-  document.getElementById('loginForm').style.display = 'block';
-  document.getElementById('signupForm').style.display = 'none';
-  document.getElementById('loginTab').classList.add('active');
-  document.getElementById('signupTab').classList.remove('active');
-  document.getElementById('message').textContent = '';
-};
-
-window.showSignup = function() {
-  document.getElementById('signupForm').style.display = 'block';
-  document.getElementById('loginForm').style.display = 'none';
-  document.getElementById('signupTab').classList.add('active');
-  document.getElementById('loginTab').classList.remove('active');
-  document.getElementById('message').textContent = '';
-};
-
-window.doLogin = function() {
-  var email = document.getElementById('loginEmail').value;
-  var pass = document.getElementById('loginPass').value;
-  var msg = document.getElementById('message');
-
-  if (email === '' || pass === '') {
-    msg.style.color = 'red';
-    msg.textContent = 'Email aur Password dono bharein';
-    return;
+<script>
+  function setMode(signup) {
+    document.body.classList.toggle('signup-mode', signup);
+    document.getElementById('tabLogin').classList.toggle('active', !signup);
+    document.getElementById('tabSignup').classList.toggle('active', signup);
+    document.querySelector('.tab-title').textContent = signup ? 'Create your account' : 'Welcome back';
+    document.querySelector('.tab-sub').textContent = signup ? 'Sign up to start applying for jobs' : 'Log in to manage your applications';
+    document.getElementById('submitBtn').textContent = signup ? 'Create account' : 'Log in';
   }
-
-  signInWithEmailAndPassword(auth, email, pass)
-    .then(function(userCredential) {
-      msg.style.color = 'green';
-      msg.textContent = 'Login successful!';
-      setTimeout(function() { window.location.href = 'index.html'; }, 1000);
-    })
-    .catch(function(error) {
-      msg.style.color = 'red';
-      if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
-        msg.textContent = 'Email ya Password ghalat hai';
-      } else {
-        msg.textContent = 'Error: ' + error.message;
-      }
-    });
-};
-
-window.doSignup = function() {
-  var name = document.getElementById('signupName').value;
-  var email = document.getElementById('signupEmail').value;
-  var pass = document.getElementById('signupPass').value;
-  var msg = document.getElementById('message');
-
-  if (name === '' || email === '' || pass === '') {
-    msg.style.color = 'red';
-    msg.textContent = 'Tamam fields bharein';
-    return;
-  }
-
-  if (pass.length < 6) {
-    msg.style.color = 'red';
-    msg.textContent = 'Password kam az kam 6 characters ka ho';
-    return;
-  }
-
-  createUserWithEmailAndPassword(auth, email, pass)
-    .then(function(userCredential) {
-      updateProfile(userCredential.user, { displayName: name });
-      msg.style.color = 'green';
-      msg.textContent = 'Account ban gaya!';
-      setTimeout(function() { window.location.href = 'index.html'; }, 1000);
-    })
-    .catch(function(error) {
-      msg.style.color = 'red';
-      if (error.code === 'auth/email-already-in-use') {
-        msg.textContent = 'Yeh email pehle se registered hai';
-      } else {
-        msg.textContent = 'Error: ' + error.message;
-      }
-    });
-};
 </script>
 
 </body>
