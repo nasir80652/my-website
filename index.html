@@ -3,36 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JobFinder Pakistan</title>
+<title id="seo-title">JobFinder Pakistan — Verified Jobs, Internships & Companies</title>
+<meta name="description" id="seo-desc" content="Find verified jobs, internships, remote work and career opportunities from real companies across Pakistan — Lahore, Karachi, Islamabad and more.">
+<link rel="canonical" id="seo-canonical" href="https://ir80652.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="JobFinder Pakistan">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#101B33;
-    --navy-2:#182A4E;
-    --cream:#F7F1E6;
-    --cream-2:#EFE4CE;
+    --navy:#0B1526;
+    --navy-2:#16213D;
+    --navy-soft:#1E2C4D;
+    --cream:#F8F3E8;
+    --cream-2:#EFE3C8;
     --card:#FFFFFF;
-    --orange:#D98C3D;
-    --orange-dark:#B96F27;
-    --ink:#1C2333;
-    --muted:#726A5C;
-    --line:#E4D9C4;
+    --gold:#C08A3E;
+    --gold-deep:#9C6A26;
+    --gold-soft:#F1E2C4;
+    --orange:#C08A3E;
+    --orange-dark:#9C6A26;
+    --ink:#181D2B;
+    --muted:#6C6455;
+    --line:#E9DFC8;
+    --line-strong:#DCC99C;
     --green-bg:#DCEADF;
     --green-ink:#2E5B3D;
     --red:#B54A4A;
     --radius:14px;
+    --shadow-sm: 0 1px 2px rgba(11,21,38,0.06), 0 1px 1px rgba(11,21,38,0.04);
+    --shadow-md: 0 8px 24px rgba(11,21,38,0.10);
+    --shadow-lg: 0 18px 46px rgba(11,21,38,0.16);
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
     background:var(--cream);
     color:var(--ink);
-    font-family:'Inter',sans-serif;
+    font-family:'Inter','Noto Nastaliq Urdu',sans-serif;
     -webkit-font-smoothing:antialiased;
     padding-bottom:64px;
   }
-  h1,h2,h3,.logo,.serif{font-family:'Playfair Display',serif;}
+  h1,h2,h3,.logo,.serif{font-family:'Playfair Display','Noto Nastaliq Urdu',serif; letter-spacing:-0.01em;}
   .urdu{font-family:'Noto Nastaliq Urdu',serif; direction:rtl;}
   a{color:inherit; text-decoration:none;}
   button{font-family:'Inter',sans-serif; cursor:pointer;}
@@ -42,41 +54,64 @@
   .wrap{max-width:1080px; margin:0 auto; padding:0 18px;}
   header.site{
     position:sticky; top:0; z-index:50;
-    background:var(--cream); border-bottom:1px solid var(--line);
+    background:rgba(248,243,232,0.92); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
   }
   .topbar{
     display:flex; align-items:center; justify-content:space-between;
     padding:14px 18px; max-width:1080px; margin:0 auto;
   }
-  .logo{font-size:22px; font-weight:700; color:var(--navy); letter-spacing:-0.3px;}
-  .logo span{color:var(--orange);}
-  nav.main-nav{display:none; gap:22px; font-weight:500; font-size:15px;}
+  .logo{font-size:23px; font-weight:700; color:var(--navy); letter-spacing:-0.02em;}
+  .logo span{color:var(--gold);}
+  nav.main-nav{display:none; gap:26px; font-weight:500; font-size:14.5px;}
+  nav.main-nav a{position:relative; padding:4px 0; color:var(--navy);}
+  nav.main-nav a:hover{color:var(--gold-deep);}
   .nav-actions{display:flex; align-items:center; gap:10px;}
   .btn{
     display:inline-flex; align-items:center; justify-content:center; gap:6px;
-    padding:10px 18px; border-radius:999px; border:1px solid transparent;
+    padding:11px 19px; border-radius:10px; border:1px solid transparent;
     font-weight:600; font-size:14.5px; white-space:nowrap;
+    transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
   }
   .btn-outline{border-color:var(--navy); color:var(--navy); background:transparent;}
   .btn-outline:active{background:var(--cream-2);}
-  .btn-primary{background:var(--orange); color:#241300; border-color:var(--orange);}
-  .btn-primary:active{background:var(--orange-dark);}
-  .btn-navy{background:var(--navy); color:#fff;}
+  .btn-primary{
+    background:linear-gradient(180deg,#D3A055,var(--gold)); color:#231400; border-color:var(--gold);
+    border-radius:999px; box-shadow:0 4px 14px rgba(192,138,62,0.35);
+  }
+  .btn-primary:active{background:var(--gold-deep); transform:translateY(1px); box-shadow:0 2px 8px rgba(192,138,62,0.3);}
+  .btn-navy{background:var(--navy); color:#fff; border-radius:999px;}
+  .btn-navy:active{background:var(--navy-2); transform:translateY(1px);}
   .btn-ghost{background:transparent; color:var(--navy); padding:10px 8px;}
-  .btn-sm{padding:7px 13px; font-size:13px;}
+  .btn-sm{padding:8px 14px; font-size:13px;}
   .btn-block{width:100%;}
+
+  /* structural section divider — used only under section titles, encodes "new section" */
+  .sect-head h2{position:relative; padding-bottom:12px;}
+  .sect-head h2::after{
+    content:""; position:absolute; left:0; bottom:0; width:34px; height:3px;
+    background:var(--gold); border-radius:2px;
+  }
+
+  /* icon badge — unified circular treatment for emoji glyphs, gives a consistent premium mark */
+  .ic-badge{
+    display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;
+    border-radius:999px; background:var(--gold-soft); color:var(--gold-deep);
+  }
 
   /* bottom mobile nav */
   .mobile-tabs{
     position:fixed; bottom:0; left:0; right:0; z-index:60;
     background:var(--navy); display:flex; justify-content:space-around;
     padding:8px 4px 10px; border-top:1px solid #24365e;
+    box-shadow:0 -8px 24px rgba(0,0,0,0.18);
   }
   .mobile-tabs a{
-    color:#9fb0d3; font-size:11px; text-align:center; flex:1;
+    color:#8FA0C4; font-size:11px; text-align:center; flex:1;
     display:flex; flex-direction:column; align-items:center; gap:3px; font-weight:600;
+    transition:color .15s ease;
   }
-  .mobile-tabs a.active{color:#fff;}
+  .mobile-tabs a.active{color:var(--gold);}
   .mobile-tabs a .ic{font-size:18px;}
 
   @media(min-width:820px){
@@ -87,15 +122,27 @@
 
   /* ---------- Hero ---------- */
   .hero{
-    background:linear-gradient(180deg,var(--navy),var(--navy-2));
-    color:#fff; padding:34px 18px 40px;
+    position:relative; overflow:hidden;
+    background:
+      radial-gradient(680px 420px at 88% -10%, rgba(192,138,62,0.28), transparent 60%),
+      radial-gradient(520px 360px at -10% 110%, rgba(30,44,77,0.55), transparent 60%),
+      linear-gradient(165deg,var(--navy),var(--navy-2) 60%,var(--navy-soft));
+    color:#fff; padding:38px 18px 44px;
   }
-  .hero .eyebrow{color:#9fb0d3; font-size:13px; font-weight:600; margin-bottom:10px;}
-  .hero h1{font-size:32px; line-height:1.15; margin:0 0 8px; font-weight:700;}
-  .hero .urdu{font-size:19px; color:var(--orange); margin:6px 0 14px;}
-  .hero p.sub{color:#c7d1e8; font-size:15.5px; margin:0 0 22px; max-width:520px;}
+  .hero::before{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:0.5;
+    background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: linear-gradient(180deg, black, transparent 75%);
+  }
+  .hero > .wrap{position:relative;}
+  .hero .eyebrow{color:#C9AF7B; font-size:12.5px; font-weight:700; margin-bottom:12px; letter-spacing:0.02em;}
+  .hero h1{font-size:33px; line-height:1.14; margin:0 0 10px; font-weight:700;}
+  .hero .urdu{font-size:19px; color:var(--gold); margin:8px 0 16px;}
+  .hero p.sub{color:#B9C3DC; font-size:15.5px; margin:0 0 24px; max-width:520px;}
   .search-card{
-    background:#fff; border-radius:16px; padding:14px; display:flex; flex-direction:column; gap:10px;
+    background:#fff; border-radius:16px; padding:16px; display:flex; flex-direction:column; gap:10px;
+    box-shadow:var(--shadow-lg); border:1px solid rgba(255,255,255,0.6);
   }
   .search-card input, .search-card select{
     width:100%; padding:13px 14px; border-radius:10px; border:1px solid var(--line);
@@ -110,7 +157,7 @@
   section{padding:36px 0;}
   .sect-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:16px; gap:10px;}
   .sect-head h2{font-size:23px; margin:0; color:var(--navy);}
-  .sect-head .view-all{font-size:13.5px; font-weight:600; color:var(--orange-dark); white-space:nowrap;}
+  .sect-head .view-all{font-size:13.5px; font-weight:600; color:var(--gold-deep); white-space:nowrap;}
   .sect-sub{color:var(--muted); font-size:14px; margin:-10px 0 16px;}
 
   .scroll-row{
@@ -119,21 +166,22 @@
   }
   .scroll-row::-webkit-scrollbar{display:none;}
   .opp-card{
-    scroll-snap-align:start; min-width:150px; background:var(--card); border:1px solid var(--line);
-    border-radius:var(--radius); padding:16px 14px; flex-shrink:0;
+    scroll-snap-align:start; min-width:152px; background:var(--card); border:1px solid var(--line);
+    border-radius:var(--radius); padding:16px 14px; flex-shrink:0; box-shadow:var(--shadow-sm);
   }
-  .opp-card .ic{font-size:24px; margin-bottom:10px;}
-  .opp-card .n{font-weight:700; font-size:20px; color:var(--navy);}
+  .opp-card .ic-badge{width:38px; height:38px; font-size:18px; margin-bottom:12px;}
+  .opp-card .n{font-weight:700; font-size:21px; color:var(--navy); font-family:'Playfair Display';}
   .opp-card .t{font-size:13px; color:var(--muted); margin-top:2px;}
 
   .grid-cards{display:grid; grid-template-columns:1fr; gap:14px;}
   @media(min-width:700px){.grid-cards.cols-2{grid-template-columns:1fr 1fr;} .grid-cards.cols-3{grid-template-columns:1fr 1fr 1fr;}}
 
   .job-card{
-    background:var(--card); border-radius:var(--radius); border-left:4px solid var(--navy);
-    padding:16px; border:1px solid var(--line); border-left:4px solid var(--navy);
-    display:flex; gap:12px;
+    background:var(--card); border-radius:var(--radius);
+    padding:16px; border:1px solid var(--line);
+    display:flex; gap:12px; box-shadow:var(--shadow-sm);
   }
+  .job-card.featured{border-color:var(--gold); box-shadow:var(--shadow-md);}
   .job-card .logo-box{
     width:52px; height:52px; border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center;
     color:#fff; font-weight:700; font-size:16px;
@@ -158,25 +206,27 @@
   .chip{
     background:var(--card); border:1px solid var(--line); border-radius:999px;
     padding:11px 16px; font-size:14.5px; font-weight:600; display:flex; align-items:center; gap:8px;
+    transition:border-color .15s ease, background-color .15s ease;
   }
+  .chip:hover{border-color:var(--gold);}
   .chip.active{background:var(--navy); color:#fff; border-color:var(--navy);}
 
   .company-card{
     background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:16px;
-    display:flex; gap:12px; align-items:center;
+    display:flex; gap:12px; align-items:center; box-shadow:var(--shadow-sm);
   }
   .company-card .logo-box{width:48px; height:48px; border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700;}
   .company-card .body{flex:1; min-width:0;}
   .company-card h3{margin:0 0 2px; font-size:15.5px;}
   .company-card .meta{font-size:12.5px; color:var(--muted);}
 
-  .update-card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:16px;}
-  .update-card .tag{font-size:12px; font-weight:700; color:var(--orange-dark);}
+  .update-card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow-sm);}
+  .update-card .tag{font-size:11.5px; font-weight:700; color:var(--gold-deep); text-transform:none;}
   .update-card h3{font-size:16.5px; margin:6px 0 6px;}
   .update-card p{font-size:14px; color:var(--muted); margin:0; line-height:1.5;}
   .update-card .date{font-size:12px; color:var(--muted); margin-top:8px;}
 
-  .filter-bar{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:14px; margin-bottom:20px;}
+  .filter-bar{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:14px; margin-bottom:20px; box-shadow:var(--shadow-sm);}
   .filter-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
   @media(min-width:700px){.filter-grid{grid-template-columns:repeat(4,1fr);}}
   .filter-grid select, .filter-grid input{
@@ -188,7 +238,12 @@
   }
   .toggle.on{background:var(--navy); color:#fff; border-color:var(--navy);}
 
-  .cta-strip{background:var(--navy); color:#fff; padding:34px 18px; text-align:center;}
+  .cta-strip{
+    background:
+      radial-gradient(520px 260px at 85% 0%, rgba(192,138,62,0.22), transparent 60%),
+      var(--navy);
+    color:#fff; padding:38px 18px; text-align:center;
+  }
   .cta-strip h2{margin:0 0 8px; font-size:22px;}
   .cta-strip p{color:#c7d1e8; margin:0 0 18px; font-size:14.5px;}
   .store-btns{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
@@ -247,6 +302,21 @@
   .admin-summary .card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px;}
   .admin-summary .card .n{font-size:24px; font-weight:700; color:var(--navy);}
   .admin-summary .card .t{font-size:12.5px; color:var(--muted);}
+  .pkg-tabs{display:flex; gap:8px; margin:14px 0;}
+  .pkg-tab{flex:1; padding:10px 6px; text-align:center; border-radius:10px; border:1px solid var(--line); background:var(--card); font-weight:700; font-size:13px; cursor:pointer; transition:border-color .15s ease;}
+  .pkg-tab.active{background:var(--navy); color:#fff; border-color:var(--navy);}
+  .pkg-panel{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow-sm);}
+  .pkg-panel .price{font-size:27px; font-weight:800; color:var(--navy); font-family:'Playfair Display';}
+  .pkg-panel .delivery{font-size:12.5px; color:var(--gold-deep); font-weight:600; margin:4px 0 10px;}
+  .gig-card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm); transition:box-shadow .15s ease, transform .15s ease;}
+  .gig-card:hover{box-shadow:var(--shadow-md); transform:translateY(-2px);}
+  .gig-cover{height:104px; display:flex; align-items:center; justify-content:center; font-size:32px; color:#fff; position:relative;}
+  .gig-cover::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(0,0,0,0.12));}
+  .gig-card .gig-body{padding:13px;}
+  .gig-card h3{font-size:14.5px; margin:0 0 4px; line-height:1.3;}
+  .gig-card .seller{font-size:12px; color:var(--muted); margin-bottom:8px;}
+  .gig-card .from-price{font-size:12px; color:var(--muted);}
+  .gig-card .from-price b{color:var(--navy); font-size:15px; font-family:'Playfair Display';}
 </style>
 </head>
 <body>
@@ -254,721 +324,47 @@
 <div id="modal-root"></div>
 
 <header class="site">
-  <div class="demo-banner">⚠ Demo Mode — sample data & simplified login for preview. Not a production backend.</div>
+  <div class="demo-banner">🔥 Connected to Firebase — real signups & shared live data. Admin panel still uses a demo password.</div>
   <div class="topbar">
     <a href="#/" class="logo">Job<span>Finder</span></a>
     <nav class="main-nav">
-      <a href="#/">Home</a>
-      <a href="#/jobs">Jobs</a>
-      <a href="#/companies">Companies</a>
-      <a href="#/internships">Internships</a>
-      <a href="#/career-updates">Career Updates</a>
+      <a href="#/" id="nl-home">Home</a>
+      <a href="#/jobs" id="nl-jobs">Jobs</a>
+      <a href="#/gigs" id="nl-gigs">Gigs</a>
+      <a href="#/courses" id="nl-courses">Courses</a>
+      <a href="#/companies" id="nl-companies">Companies</a>
+      <a href="#/internships" id="nl-internships">Internships</a>
+      <a href="#/career-updates" id="nl-updates">Career Updates</a>
     </nav>
-    <div class="nav-actions" id="nav-actions"></div>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <div style="display:flex; border:1px solid var(--line); border-radius:999px; padding:2px; font-size:12px; font-weight:700;">
+        <button id="lang-en" onclick="setLang('en')" style="border:none; background:transparent; padding:5px 10px; border-radius:999px; cursor:pointer;">EN</button>
+        <button id="lang-ur" onclick="setLang('ur')" style="border:none; background:transparent; padding:5px 10px; border-radius:999px; cursor:pointer;">اردو</button>
+      </div>
+      <div class="nav-actions" id="nav-actions"></div>
+    </div>
   </div>
 </header>
 
 <div id="app"></div>
 
 <div class="mobile-tabs">
-  <a href="#/" data-r="/" class="ic-tab"><span class="ic">🏠</span>Home</a>
-  <a href="#/jobs" data-r="/jobs" class="ic-tab"><span class="ic">💼</span>Jobs</a>
-  <a href="#/post-job" data-r="/post-job" class="ic-tab"><span class="ic">➕</span>Post</a>
-  <a href="#/companies" data-r="/companies" class="ic-tab"><span class="ic">🏢</span>Companies</a>
-  <a href="#/account" data-r="/account" class="ic-tab"><span class="ic">👤</span>Account</a>
+  <a href="#/" data-r="/" class="ic-tab"><span class="ic">🏠</span><span id="mt-home">Home</span></a>
+  <a href="#/jobs" data-r="/jobs" class="ic-tab"><span class="ic">💼</span><span id="mt-jobs">Jobs</span></a>
+  <a href="#/gigs" data-r="/gigs" class="ic-tab"><span class="ic">🎨</span><span id="mt-gigs">Gigs</span></a>
+  <a href="#/post-job" data-r="/post-job" class="ic-tab"><span class="ic">➕</span><span id="mt-post">Post</span></a>
+  <a href="#/account" data-r="/account" class="ic-tab"><span class="ic">👤</span><span id="mt-account">Account</span></a>
 </div>
 
-<script>
+<script type="module">
 /* ============================================================
-   JOBFINDER PAKISTAN — front-end prototype
-   Persistent shared data via window.storage. Demo auth only.
+   JOBFINDER PAKISTAN — Firebase-connected version
+   Firestore = shared live data (jobs, companies, updates, applications)
+   Firebase Auth = real job-seeker & company accounts
+   Admin panel = still a simple demo password gate (not real Firebase auth)
    ============================================================ */
-
-const CATEGORIES = [
-  ["IT & Software","💻"],["Teaching","📚"],["Healthcare","🩺"],["Marketing","📣"],
-  ["Sales","📈"],["Accounting","💰"],["Construction","🏗️"],["Driving","🚗"],
-  ["Customer Support","☎️"],["Security","🛡️"],["Engineering","⚙️"],["Hospitality","🏨"],
-  ["Retail","🛍️"],["Freelancing","🌐"],["Remote Work","🏡"]
-];
-const CITIES = ["Lahore","Karachi","Islamabad","Rawalpindi","Peshawar","Quetta","Multan",
-  "Faisalabad","Gujranwala","Hyderabad","Sialkot","Bahawalpur"];
-const JOB_TYPES = ["Full-Time","Part-Time","Internship","Remote","Contract","Apprenticeship"];
-const EXPERIENCE = ["No Experience","Fresh Graduate","1-3 years","3-5 years","5+ years"];
-const APP_STATUSES = ["Applied","Under Review","Shortlisted","Interview","Rejected","Selected"];
-const LOGO_COLORS = ["#12213F","#D98C3D","#3B6E52","#5A4A82","#7A3B3B","#2E6B7A"];
-
-function initials(name){return (name||"?").split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase();}
-function colorFor(name){let h=0; for(const c of (name||"")) h+=c.charCodeAt(0); return LOGO_COLORS[h%LOGO_COLORS.length];}
-function fmtDate(iso){ try{ return new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}catch(e){return iso;} }
-function daysAgo(iso){ const d=(Date.now()-new Date(iso).getTime())/86400000; if(d<1) return "Today"; if(d<2) return "Yesterday"; return Math.floor(d)+" days ago"; }
-function uid(){return Math.random().toString(36).slice(2,10);}
-function esc(s){return (s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-
-/* ---------------- storage layer with in-memory fallback ---------------- */
-let MEM = {jobs:[], companies:[], updates:[], applications:[]};
-async function sGet(key, shared){
-  try{ const r = await window.storage.get(key, shared); return r ? JSON.parse(r.value) : null; }
-  catch(e){ return null; }
-}
-async function sSet(key, value, shared){
-  try{ await window.storage.set(key, JSON.stringify(value), shared); }catch(e){ /* ignore, memory still holds it */ }
-}
-
-let DB = {jobs:[], companies:[], updates:[], applications:[], seeded:false};
-let SESSION = {role:null, companyId:null, seekerEmail:null, seekerName:null, isAdmin:false};
-
-async function loadDB(){
-  const jobs = await sGet('jobs', true);
-  const companies = await sGet('companies', true);
-  const updates = await sGet('updates', true);
-  const applications = await sGet('applications', true);
-  DB.jobs = jobs || [];
-  DB.companies = companies || [];
-  DB.updates = updates || [];
-  DB.applications = applications || [];
-  if(!jobs || !companies){ await seed(); }
-}
-async function persist(part){
-  if(part==='jobs') await sSet('jobs', DB.jobs, true);
-  if(part==='companies') await sSet('companies', DB.companies, true);
-  if(part==='updates') await sSet('updates', DB.updates, true);
-  if(part==='applications') await sSet('applications', DB.applications, true);
-}
-
-async function seed(){
-  const co = (name,industry,city,verified)=>({id:uid(),name,industry,city,verified,logoColor:colorFor(name),description:"Demo company profile — sample content for preview purposes.",createdAt:new Date().toISOString()});
-  DB.companies = [
-    co("TechSol Pvt Ltd","IT & Software","Lahore",true),
-    co("Creative Studio","Marketing","Karachi",true),
-    co("MegaMart","Retail","Islamabad",false),
-    co("BuildRight Construction","Construction","Rawalpindi",true),
-    co("CarePlus Hospital","Healthcare","Multan",false),
-    co("SwiftLogix","Customer Support","Faisalabad",true),
-  ];
-  const jb = (title,companyIdx,city,salary,type,exp,category,verified,daysBack,featured)=>({
-    id:uid(), title, companyId:DB.companies[companyIdx].id, city, salary, type, exp, category,
-    verified, status:"approved", featured:!!featured, remote: type==="Remote",
-    postedAt:new Date(Date.now()-daysBack*86400000).toISOString(), demo:true,
-    description:"Demo listing for preview purposes. Full job description would appear here."
-  });
-  DB.jobs = [
-    jb("Web Developer",0,"Lahore","PKR 60,000 – 90,000","Full-Time","1-3 years","IT & Software",true,0,true),
-    jb("Graphic Designer",1,"Karachi","PKR 45,000 – 60,000","Full-Time","Fresh Graduate","Marketing",true,0,true),
-    jb("Sales Executive",2,"Islamabad","PKR 35,000 – 40,000","Full-Time","No Experience","Sales",false,1,false),
-    jb("Site Supervisor",3,"Rawalpindi","PKR 55,000 – 70,000","Full-Time","3-5 years","Construction",true,1,false),
-    jb("Front Desk Nurse",4,"Multan","PKR 40,000 – 50,000","Part-Time","1-3 years","Healthcare",false,2,false),
-    jb("Customer Support Agent",5,"Faisalabad","PKR 38,000 – 45,000","Remote","No Experience","Customer Support",true,2,true),
-    jb("Marketing Intern",1,"Karachi","PKR 15,000 stipend","Internship","No Experience","Marketing",true,3,false),
-    jb("Junior Accountant",2,"Islamabad","PKR 42,000 – 50,000","Full-Time","Fresh Graduate","Accounting",false,4,false),
-    jb("Remote Content Writer",0,"Lahore","PKR 30,000 – 45,000","Remote","Fresh Graduate","Freelancing",true,0,false),
-    jb("Security Guard",3,"Rawalpindi","PKR 28,000 – 32,000","Full-Time","No Experience","Security",false,5,false),
-    jb("Apprentice Electrician",3,"Rawalpindi","PKR 20,000 stipend","Apprenticeship","No Experience","Engineering",false,6,false),
-    jb("Delivery Driver",2,"Islamabad","PKR 32,000 – 38,000","Full-Time","No Experience","Driving",false,3,false),
-  ];
-  DB.updates = [
-    {id:uid(), tag:"Job Alert", title:"IT hiring surges in Lahore this quarter", body:"Demo update — sample career-news content covering fresh hiring trends across Lahore's tech sector.", date:new Date().toISOString()},
-    {id:uid(), tag:"CV Tips", title:"5 changes that make your CV stand out", body:"Demo update — sample tips on formatting, keywords and structuring your resume for Pakistani employers.", date:new Date(Date.now()-2*86400000).toISOString()},
-    {id:uid(), tag:"Interview Tips", title:"How to answer 'tell me about yourself'", body:"Demo update — sample interview-prep guidance for entry-level and experienced candidates alike.", date:new Date(Date.now()-4*86400000).toISOString()},
-    {id:uid(), tag:"Skills", title:"In-demand skills for 2026 in Pakistan", body:"Demo update — sample roundup of the skills employers are asking for most this year.", date:new Date(Date.now()-6*86400000).toISOString()},
-  ];
-  DB.applications = [];
-  await persist('jobs'); await persist('companies'); await persist('updates'); await persist('applications');
-}
-
-/* ---------------- filters state ---------------- */
-let FILTERS = {q:"", city:"", category:"", type:"", exp:"", remote:false, partTime:false, fullTime:false};
-
-function jobMatches(j){
-  if(FILTERS.q){
-    const q=FILTERS.q.toLowerCase();
-    const co = companyById(j.companyId);
-    if(!(j.title.toLowerCase().includes(q) || (co&&co.name.toLowerCase().includes(q)) || j.category.toLowerCase().includes(q))) return false;
-  }
-  if(FILTERS.city && j.city!==FILTERS.city) return false;
-  if(FILTERS.category && j.category!==FILTERS.category) return false;
-  if(FILTERS.type && j.type!==FILTERS.type) return false;
-  if(FILTERS.exp && j.exp!==FILTERS.exp) return false;
-  if(FILTERS.remote && j.type!=="Remote") return false;
-  if(FILTERS.partTime && j.type!=="Part-Time") return false;
-  if(FILTERS.fullTime && j.type!=="Full-Time") return false;
-  return j.status==="approved";
-}
-function companyById(id){return DB.companies.find(c=>c.id===id);}
-
-/* ================= RENDERING ================= */
-const app = document.getElementById('app');
-const navActions = document.getElementById('nav-actions');
-
-function renderNavActions(){
-  if(SESSION.isAdmin){
-    navActions.innerHTML = `<a href="#/admin" class="btn btn-navy btn-sm">Admin</a><button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>`;
-  } else if(SESSION.role==='company'){
-    navActions.innerHTML = `<a href="#/dashboard" class="btn btn-navy btn-sm">Dashboard</a><button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>`;
-  } else if(SESSION.role==='seeker'){
-    navActions.innerHTML = `<a href="#/account" class="btn btn-navy btn-sm">${esc(SESSION.seekerName||'Account')}</a><button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>`;
-  } else {
-    navActions.innerHTML = `<button class="btn btn-outline" onclick="openAuthModal()">Login</button>`;
-  }
-}
-function logout(){ SESSION={role:null,companyId:null,seekerEmail:null,seekerName:null,isAdmin:false}; renderNavActions(); route(); }
-
-function jobCardHtml(j, opts={}){
-  const co = companyById(j.companyId) || {name:"Unknown Company", city:j.city};
-  const badges = [];
-  if(j.verified) badges.push(`<span class="badge badge-verified">✓ Verified</span>`);
-  if(j.demo) badges.push(`<span class="badge badge-demo">Demo</span>`);
-  if(j.status==='pending') badges.push(`<span class="badge badge-pending">Pending review</span>`);
-  if(j.type==='Remote') badges.push(`<span class="badge badge-remote">Remote</span>`);
-  return `
-  <div class="job-card">
-    <div class="logo-box" style="background:${colorFor(co.name)}">${initials(co.name)}</div>
-    <div class="body">
-      <h3>${esc(j.title)}</h3>
-      <div class="meta">${esc(co.name)} · ${esc(j.city)} · ${esc(j.type)}</div>
-      <div class="row-badges">
-        <span class="badge badge-salary">${esc(j.salary)}</span>
-        ${badges.join("")}
-      </div>
-      <div class="actions">
-        <button class="btn btn-primary btn-sm" onclick="openApplyModal('${j.id}')">Apply Now</button>
-        <button class="btn btn-outline btn-sm" onclick="saveJob('${j.id}')">Save Job</button>
-      </div>
-      <div class="posted">Posted ${daysAgo(j.postedAt)} · ${esc(j.exp)}</div>
-    </div>
-  </div>`;
-}
-
-function companyCardHtml(c){
-  const jobCount = DB.jobs.filter(j=>j.companyId===c.id && j.status==='approved').length;
-  return `
-  <div class="company-card">
-    <div class="logo-box" style="background:${colorFor(c.name)}">${initials(c.name)}</div>
-    <div class="body">
-      <h3>${esc(c.name)} ${c.verified?'<span class="badge badge-verified" style="margin-left:4px;">✓</span>':''}</h3>
-      <div class="meta">${esc(c.industry)} · ${esc(c.city)} · ${jobCount} open job${jobCount!==1?'s':''}</div>
-    </div>
-  </div>`;
-}
-
-function updateCardHtml(u){
-  return `<div class="update-card">
-    <div class="tag">${esc(u.tag)}</div>
-    <h3>${esc(u.title)}</h3>
-    <p>${esc(u.body)}</p>
-    <div class="date">${fmtDate(u.date)}</div>
-  </div>`;
-}
-
-function heroHtml(){
-  return `
-  <div class="hero">
-    <div class="wrap">
-      <div class="eyebrow">Pakistan's growing job network</div>
-      <h1>Find Your Next<br>Opportunity</h1>
-      <div class="urdu">ہر روز نئی Jobs، نئی Companies اور نئی Opportunities تلاش کریں۔</div>
-      <p class="sub">Jobs, internships, companies, courses and opportunities — all in one place.</p>
-      <div class="search-card">
-        <input id="hero-q" type="text" placeholder="Search jobs, companies or opportunities">
-        <div class="search-row">
-          <select id="hero-city">
-            <option value="">Select City</option>
-            ${CITIES.map(c=>`<option value="${c}">${c}</option>`).join("")}
-          </select>
-        </div>
-        <div class="hero-btns">
-          <button class="btn btn-primary" onclick="heroSearch()">Search Jobs</button>
-          <a href="#/post-job" class="btn btn-navy">Post a Job</a>
-        </div>
-      </div>
-    </div>
-  </div>`;
-}
-function heroSearch(){
-  FILTERS.q = document.getElementById('hero-q').value.trim();
-  FILTERS.city = document.getElementById('hero-city').value;
-  location.hash = "#/jobs";
-}
-
-function pageHome(){
-  const newJobs = [...DB.jobs].filter(j=>j.status==='approved').sort((a,b)=>new Date(b.postedAt)-new Date(a.postedAt));
-  const featured = DB.jobs.filter(j=>j.featured && j.status==='approved').slice(0,6);
-  const latest = newJobs.slice(0,6);
-  const opp = [
-    ["New Jobs","🆕", DB.jobs.filter(j=>j.status==='approved').length],
-    ["New Companies","🏢", DB.companies.length],
-    ["Internships","🎓", DB.jobs.filter(j=>j.type==='Internship').length],
-    ["Remote Work","🏡", DB.jobs.filter(j=>j.type==='Remote').length],
-    ["Part-Time Jobs","⏱️", DB.jobs.filter(j=>j.type==='Part-Time').length],
-    ["Training & Courses","📘", 4],
-    ["Scholarships","🎗️", 2],
-    ["Earning Opportunities","💵", 3],
-  ];
-  return `
-  ${heroHtml()}
-  <div class="wrap">
-    <section>
-      <div class="sect-head"><h2>Today's New Opportunities</h2><a class="view-all" href="#/jobs">View All →</a></div>
-      <div class="scroll-row">
-        ${opp.map(([t,ic,n])=>`<div class="opp-card"><div class="ic">${ic}</div><div class="n">${n}</div><div class="t">${t}</div></div>`).join("")}
-      </div>
-    </section>
-
-    <section>
-      <div class="sect-head"><h2>Latest Jobs</h2><a class="view-all" href="#/jobs">View All →</a></div>
-      <div class="grid-cards cols-2">${latest.length? latest.map(j=>jobCardHtml(j)).join("") : emptyState("No jobs yet.")}</div>
-    </section>
-
-    <section>
-      <div class="sect-head"><h2>Featured Companies</h2><a class="view-all" href="#/companies">View All →</a></div>
-      <div class="grid-cards cols-2">${(featured.length? DB.companies.filter(c=>featured.some(j=>j.companyId===c.id)) : DB.companies).slice(0,4).map(companyCardHtml).join("")}</div>
-    </section>
-
-    <section>
-      <div class="sect-head"><h2>Browse by Category</h2></div>
-      <div class="chip-grid">
-        ${CATEGORIES.map(([c,ic])=>`<a class="chip" href="#/jobs?category=${encodeURIComponent(c)}">${ic} ${c}</a>`).join("")}
-      </div>
-    </section>
-
-    <section>
-      <div class="sect-head"><h2>Browse by City</h2></div>
-      <div class="chip-grid">
-        ${CITIES.map(c=>`<a class="chip" href="#/jobs?city=${encodeURIComponent(c)}">📍 ${c}</a>`).join("")}
-        <a class="chip" href="#/jobs">+ more cities</a>
-      </div>
-    </section>
-
-    <section>
-      <div class="sect-head"><h2>Internships & Freshers</h2><a class="view-all" href="#/internships">View All →</a></div>
-      <p class="sect-sub">Internships, fresh graduate jobs, no-experience roles, training & apprenticeships.</p>
-      <div class="grid-cards cols-2">
-        ${DB.jobs.filter(j=>['Internship','Apprenticeship'].includes(j.type) || j.exp==='No Experience' || j.exp==='Fresh Graduate').slice(0,4).map(j=>jobCardHtml(j)).join("")}
-      </div>
-    </section>
-
-    <section>
-      <div class="sect-head"><h2>Remote & Part-Time</h2><a class="view-all" href="#/remote">View All →</a></div>
-      <div class="grid-cards cols-2">
-        ${DB.jobs.filter(j=>['Remote','Part-Time'].includes(j.type)).slice(0,4).map(j=>jobCardHtml(j)).join("")}
-      </div>
-    </section>
-
-    <section>
-      <div class="sect-head"><h2>Career Updates</h2><a class="view-all" href="#/career-updates">View All →</a></div>
-      <div class="grid-cards cols-2">${DB.updates.slice(0,4).map(updateCardHtml).join("")}</div>
-    </section>
-  </div>
-
-  <div class="cta-strip">
-    <h2>Take it with you</h2>
-    <p>Search and apply for jobs from your phone, anytime</p>
-    <div class="store-btns">
-      <span class="btn">Google Play</span><span class="btn">App Store</span>
-    </div>
-    <p style="font-size:11.5px; color:#8b9ac0; margin-top:10px;">(demo — app not yet published)</p>
-  </div>
-  ${footerHtml()}
-  `;
-}
-
-function emptyState(msg){ return `<div class="empty-state">${esc(msg)}</div>`; }
-
-function filterBarHtml(){
-  return `
-  <div class="filter-bar">
-    <div class="filter-grid">
-      <input id="f-q" placeholder="Keyword" value="${esc(FILTERS.q)}">
-      <select id="f-city"><option value="">All Cities</option>${CITIES.map(c=>`<option ${FILTERS.city===c?'selected':''} value="${c}">${c}</option>`).join("")}</select>
-      <select id="f-category"><option value="">All Categories</option>${CATEGORIES.map(([c])=>`<option ${FILTERS.category===c?'selected':''} value="${c}">${c}</option>`).join("")}</select>
-      <select id="f-exp"><option value="">Any Experience</option>${EXPERIENCE.map(c=>`<option ${FILTERS.exp===c?'selected':''} value="${c}">${c}</option>`).join("")}</select>
-    </div>
-    <div class="filter-toggles">
-      <button class="toggle ${FILTERS.remote?'on':''}" onclick="toggleFilter('remote')">Remote</button>
-      <button class="toggle ${FILTERS.partTime?'on':''}" onclick="toggleFilter('partTime')">Part-Time</button>
-      <button class="toggle ${FILTERS.fullTime?'on':''}" onclick="toggleFilter('fullTime')">Full-Time</button>
-      <button class="toggle" onclick="clearFilters()">Clear all</button>
-    </div>
-    <div style="margin-top:12px;"><button class="btn btn-primary btn-sm" onclick="applyFilters()">Apply Filters</button></div>
-  </div>`;
-}
-function applyFilters(){
-  FILTERS.q = document.getElementById('f-q').value.trim();
-  FILTERS.city = document.getElementById('f-city').value;
-  FILTERS.category = document.getElementById('f-category').value;
-  FILTERS.exp = document.getElementById('f-exp').value;
-  render();
-}
-function toggleFilter(key){ FILTERS[key]=!FILTERS[key]; render(); }
-function clearFilters(){ FILTERS={q:"",city:"",category:"",type:"",exp:"",remote:false,partTime:false,fullTime:false}; render(); }
-
-function pageJobs(){
-  const list = DB.jobs.filter(jobMatches).sort((a,b)=>new Date(b.postedAt)-new Date(a.postedAt));
-  return `<div class="wrap container-page">
-    <h1 style="font-size:26px; color:var(--navy); margin-bottom:4px;">All Jobs</h1>
-    <p class="section-title-lead">${list.length} matching job${list.length!==1?'s':''}</p>
-    ${filterBarHtml()}
-    <div class="grid-cards cols-2">${list.length? list.map(j=>jobCardHtml(j)).join("") : emptyState("No jobs match your filters yet.")}</div>
-  </div>${footerHtml()}`;
-}
-function pageInternships(){
-  const list = DB.jobs.filter(j=>j.status==='approved' && (['Internship','Apprenticeship'].includes(j.type) || j.exp==='No Experience' || j.exp==='Fresh Graduate'));
-  return `<div class="wrap container-page">
-    <h1 style="font-size:26px; color:var(--navy); margin-bottom:4px;">Internships & Freshers</h1>
-    <p class="section-title-lead">Internships, fresh graduate jobs, no-experience roles, training & apprenticeships.</p>
-    <div class="grid-cards cols-2">${list.length? list.map(j=>jobCardHtml(j)).join("") : emptyState("Nothing here yet.")}</div>
-  </div>${footerHtml()}`;
-}
-function pageRemote(){
-  const list = DB.jobs.filter(j=>j.status==='approved' && ['Remote','Part-Time'].includes(j.type));
-  return `<div class="wrap container-page">
-    <h1 style="font-size:26px; color:var(--navy); margin-bottom:4px;">Remote & Part-Time</h1>
-    <div class="grid-cards cols-2">${list.length? list.map(j=>jobCardHtml(j)).join("") : emptyState("Nothing here yet.")}</div>
-  </div>${footerHtml()}`;
-}
-function pageCompanies(){
-  return `<div class="wrap container-page">
-    <h1 style="font-size:26px; color:var(--navy); margin-bottom:14px;">Companies</h1>
-    <div class="grid-cards cols-2">${DB.companies.map(companyCardHtml).join("")}</div>
-  </div>${footerHtml()}`;
-}
-function pageCareerUpdates(){
-  return `<div class="wrap container-page">
-    <h1 style="font-size:26px; color:var(--navy); margin-bottom:14px;">Career Updates</h1>
-    <div class="grid-cards cols-2">${DB.updates.slice().sort((a,b)=>new Date(b.date)-new Date(a.date)).map(updateCardHtml).join("")}</div>
-  </div>${footerHtml()}`;
-}
-
-function pagePostJob(){
-  if(SESSION.role!=='company'){
-    return `<div class="wrap container-page">
-      <h1 style="font-size:24px; color:var(--navy);">Post a Job</h1>
-      <p class="section-title-lead">You need a company account to post a job.</p>
-      <button class="btn btn-primary" onclick="openAuthModal('company')">Register / Login as Company</button>
-    </div>${footerHtml()}`;
-  }
-  return `<div class="wrap container-page">
-    <h1 style="font-size:24px; color:var(--navy); margin-bottom:4px;">Post a Job</h1>
-    <p class="section-title-lead">New listings go live after admin verification, or immediately as unverified.</p>
-    <div class="filter-bar">
-      <label>Job Title</label><input id="pj-title" placeholder="e.g. Web Developer">
-      <label>City</label><select id="pj-city">${CITIES.map(c=>`<option>${c}</option>`).join("")}</select>
-      <label>Category</label><select id="pj-category">${CATEGORIES.map(([c])=>`<option>${c}</option>`).join("")}</select>
-      <label>Job Type</label><select id="pj-type">${JOB_TYPES.map(c=>`<option>${c}</option>`).join("")}</select>
-      <label>Experience</label><select id="pj-exp">${EXPERIENCE.map(c=>`<option>${c}</option>`).join("")}</select>
-      <label>Salary</label><input id="pj-salary" placeholder="e.g. PKR 50,000 – 70,000">
-      <label>Description</label><textarea id="pj-desc" placeholder="Role details, responsibilities, requirements..."></textarea>
-      <div class="modal-actions"><button class="btn btn-primary btn-block" onclick="submitJob()">Publish Job</button></div>
-      <div id="pj-msg"></div>
-    </div>
-  </div>${footerHtml()}`;
-}
-async function submitJob(){
-  const title=document.getElementById('pj-title').value.trim();
-  if(!title){ document.getElementById('pj-msg').innerHTML=`<div class="status-msg status-err">Please enter a job title.</div>`; return; }
-  const job = {
-    id:uid(), title, companyId:SESSION.companyId,
-    city:document.getElementById('pj-city').value,
-    category:document.getElementById('pj-category').value,
-    type:document.getElementById('pj-type').value,
-    exp:document.getElementById('pj-exp').value,
-    salary:document.getElementById('pj-salary').value.trim()||"Salary not disclosed",
-    description:document.getElementById('pj-desc').value.trim()||"No description provided.",
-    verified:false, status:"approved", featured:false, demo:false,
-    postedAt:new Date().toISOString()
-  };
-  DB.jobs.unshift(job);
-  await persist('jobs');
-  document.getElementById('pj-msg').innerHTML=`<div class="status-msg status-ok">Job published! It will show as unverified until admin approves it.</div>`;
-}
-
-function pageDashboard(){
-  if(SESSION.role!=='company'){
-    return `<div class="wrap container-page">${emptyState("Login as a company to see your dashboard.")}<div style="margin-top:14px;"><button class="btn btn-primary" onclick="openAuthModal('company')">Company Login</button></div></div>${footerHtml()}`;
-  }
-  const myJobs = DB.jobs.filter(j=>j.companyId===SESSION.companyId);
-  const co = companyById(SESSION.companyId);
-  return `<div class="wrap container-page">
-    <h1 style="font-size:24px; color:var(--navy);">${esc(co?co.name:'')} — Dashboard</h1>
-    <div class="sect-head" style="margin-top:20px;"><h2 style="font-size:18px;">Your Jobs (${myJobs.length})</h2><a class="view-all" href="#/post-job">+ Post New</a></div>
-    <div class="table-scroll">
-      <table class="admin-table"><thead><tr><th>Title</th><th>City</th><th>Status</th><th>Applicants</th></tr></thead>
-      <tbody>${myJobs.map(j=>{
-        const apps = DB.applications.filter(a=>a.jobId===j.id);
-        return `<tr><td>${esc(j.title)}</td><td>${esc(j.city)}</td><td>${j.verified?'✓ Verified':'Unverified'}</td><td>${apps.length}</td></tr>`;
-      }).join("") || `<tr><td colspan="4">No jobs posted yet.</td></tr>`}</tbody></table>
-    </div>
-    <div class="sect-head" style="margin-top:26px;"><h2 style="font-size:18px;">Applicants</h2></div>
-    <div class="grid-cards cols-2">
-      ${DB.applications.filter(a=>myJobs.some(j=>j.id===a.jobId)).map(a=>{
-        const j = DB.jobs.find(x=>x.id===a.jobId);
-        return `<div class="job-card"><div class="logo-box" style="background:${colorFor(a.name)}">${initials(a.name)}</div>
-        <div class="body"><h3>${esc(a.name)}</h3><div class="meta">Applied for ${esc(j?j.title:'')}</div>
-        <div class="meta">${esc(a.email)}</div>
-        <div style="margin-top:8px;"><select onchange="updateAppStatus('${a.id}', this.value)">${APP_STATUSES.map(s=>`<option ${a.status===s?'selected':''}>${s}</option>`).join("")}</select></div>
-        </div></div>`;
-      }).join("") || emptyState("No applicants yet.")}
-    </div>
-  </div>${footerHtml()}`;
-}
-async function updateAppStatus(id, status){
-  const a = DB.applications.find(x=>x.id===id); if(a){ a.status=status; await persist('applications'); render(); }
-}
-
-function pageAccount(){
-  if(SESSION.role!=='seeker'){
-    return `<div class="wrap container-page">
-      <h1 style="font-size:24px; color:var(--navy);">My Account</h1>
-      <p class="section-title-lead">Login as a job seeker to see saved jobs and applications.</p>
-      <button class="btn btn-primary" onclick="openAuthModal('seeker')">Job Seeker Login</button>
-    </div>${footerHtml()}`;
-  }
-  const myApps = DB.applications.filter(a=>a.email===SESSION.seekerEmail);
-  return `<div class="wrap container-page">
-    <h1 style="font-size:24px; color:var(--navy);">Hi, ${esc(SESSION.seekerName)}</h1>
-    <div class="sect-head" style="margin-top:20px;"><h2 style="font-size:18px;">My Applications (${myApps.length})</h2></div>
-    <div class="grid-cards cols-2">
-      ${myApps.map(a=>{
-        const j=DB.jobs.find(x=>x.id===a.jobId); const co = j?companyById(j.companyId):null;
-        return `<div class="job-card"><div class="logo-box" style="background:${colorFor(co?co.name:'?')}">${initials(co?co.name:'?')}</div>
-        <div class="body"><h3>${esc(j?j.title:'Job removed')}</h3><div class="meta">${esc(co?co.name:'')}</div>
-        <span class="pill-status" style="background:var(--green-bg); color:var(--green-ink);">${esc(a.status)}</span>
-        <div class="posted">Applied ${fmtDate(a.appliedAt)}</div></div></div>`;
-      }).join("") || emptyState("You haven't applied to any jobs yet.")}
-    </div>
-  </div>${footerHtml()}`;
-}
-
-function pageAdmin(){
-  if(!SESSION.isAdmin){
-    return `<div class="wrap container-page">
-      <h1 style="font-size:24px; color:var(--navy);">Admin Login</h1>
-      <p class="section-title-lead">Demo password: <b>admin123</b> (not secure — for preview only)</p>
-      <div class="filter-bar">
-        <input id="admin-pass" type="password" placeholder="Admin password">
-        <div class="modal-actions"><button class="btn btn-primary btn-block" onclick="adminLogin()">Login</button></div>
-        <div id="admin-msg"></div>
-      </div>
-    </div>${footerHtml()}`;
-  }
-  return `<div class="wrap container-page">
-    <h1 style="font-size:24px; color:var(--navy);">Admin Dashboard</h1>
-    <div class="admin-summary">
-      <div class="card"><div class="n">${DB.jobs.length}</div><div class="t">Jobs</div></div>
-      <div class="card"><div class="n">${DB.companies.length}</div><div class="t">Companies</div></div>
-      <div class="card"><div class="n">${DB.applications.length}</div><div class="t">Applications</div></div>
-      <div class="card"><div class="n">${DB.updates.length}</div><div class="t">Career Updates</div></div>
-    </div>
-
-    <div class="sect-head"><h2 style="font-size:18px;">Jobs</h2></div>
-    <div class="table-scroll">
-      <table class="admin-table"><thead><tr><th>Title</th><th>City</th><th>Verified</th><th>Featured</th><th>Status</th><th></th></tr></thead>
-      <tbody>${DB.jobs.map(j=>`<tr>
-        <td>${esc(j.title)}</td><td>${esc(j.city)}</td>
-        <td>${j.verified?'✓':'—'}</td><td>${j.featured?'★':'—'}</td>
-        <td>${esc(j.status)}</td>
-        <td style="white-space:nowrap;">
-          <button class="mini-btn go" onclick="adminToggle('job','${j.id}','verified')">Verify</button>
-          <button class="mini-btn go" onclick="adminToggle('job','${j.id}','featured')">Feature</button>
-          <button class="mini-btn danger" onclick="adminDelete('job','${j.id}')">Delete</button>
-        </td></tr>`).join("")}</tbody></table>
-    </div>
-
-    <div class="sect-head" style="margin-top:26px;"><h2 style="font-size:18px;">Companies</h2></div>
-    <div class="table-scroll">
-      <table class="admin-table"><thead><tr><th>Name</th><th>City</th><th>Verified</th><th></th></tr></thead>
-      <tbody>${DB.companies.map(c=>`<tr>
-        <td>${esc(c.name)}</td><td>${esc(c.city)}</td><td>${c.verified?'✓':'—'}</td>
-        <td><button class="mini-btn go" onclick="adminToggle('company','${c.id}','verified')">Verify</button>
-        <button class="mini-btn danger" onclick="adminDelete('company','${c.id}')">Delete</button></td></tr>`).join("")}</tbody></table>
-    </div>
-
-    <div class="sect-head" style="margin-top:26px;"><h2 style="font-size:18px;">Career Updates</h2><a class="view-all" href="javascript:void(0)" onclick="openUpdateModal()">+ New Update</a></div>
-    <div class="table-scroll">
-      <table class="admin-table"><thead><tr><th>Title</th><th>Tag</th><th>Date</th><th></th></tr></thead>
-      <tbody>${DB.updates.map(u=>`<tr><td>${esc(u.title)}</td><td>${esc(u.tag)}</td><td>${fmtDate(u.date)}</td>
-        <td><button class="mini-btn danger" onclick="adminDelete('update','${u.id}')">Delete</button></td></tr>`).join("")}</tbody></table>
-    </div>
-
-    <div class="sect-head" style="margin-top:26px;"><h2 style="font-size:18px;">Applications</h2></div>
-    <div class="table-scroll">
-      <table class="admin-table"><thead><tr><th>Applicant</th><th>Job</th><th>Status</th></tr></thead>
-      <tbody>${DB.applications.map(a=>{const j=DB.jobs.find(x=>x.id===a.jobId); return `<tr><td>${esc(a.name)}</td><td>${esc(j?j.title:'—')}</td><td>${esc(a.status)}</td></tr>`}).join("") || `<tr><td colspan="3">No applications yet.</td></tr>`}</tbody></table>
-    </div>
-  </div>${footerHtml()}`;
-}
-function adminLogin(){
-  const p = document.getElementById('admin-pass').value;
-  if(p==='admin123'){ SESSION.isAdmin=true; renderNavActions(); render(); }
-  else document.getElementById('admin-msg').innerHTML=`<div class="status-msg status-err">Incorrect password.</div>`;
-}
-async function adminToggle(kind, id, field){
-  const list = kind==='job'?DB.jobs:kind==='company'?DB.companies:DB.updates;
-  const item = list.find(x=>x.id===id); if(item){ item[field]=!item[field]; await persist(kind==='job'?'jobs':kind==='company'?'companies':'updates'); render(); }
-}
-async function adminDelete(kind, id){
-  if(kind==='job'){ DB.jobs=DB.jobs.filter(x=>x.id!==id); await persist('jobs'); }
-  if(kind==='company'){ DB.companies=DB.companies.filter(x=>x.id!==id); await persist('companies'); }
-  if(kind==='update'){ DB.updates=DB.updates.filter(x=>x.id!==id); await persist('updates'); }
-  render();
-}
-function openUpdateModal(){
-  document.getElementById('modal-root').innerHTML = `
-  <div class="modal-back" onclick="if(event.target===this) closeModal()">
-    <div class="modal" style="position:relative;">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <h2>New Career Update</h2>
-      <label>Tag</label><input id="u-tag" placeholder="e.g. Job Alert, CV Tips">
-      <label>Title</label><input id="u-title" placeholder="Headline">
-      <label>Body</label><textarea id="u-body" placeholder="Short update text"></textarea>
-      <div class="modal-actions"><button class="btn btn-primary btn-block" onclick="submitUpdate()">Publish</button></div>
-    </div>
-  </div>`;
-}
-async function submitUpdate(){
-  const title=document.getElementById('u-title').value.trim();
-  if(!title) return;
-  DB.updates.unshift({id:uid(), tag:document.getElementById('u-tag').value.trim()||"Update", title, body:document.getElementById('u-body').value.trim(), date:new Date().toISOString()});
-  await persist('updates');
-  closeModal(); render();
-}
-
-/* ---------------- modals: auth & apply ---------------- */
-function closeModal(){ document.getElementById('modal-root').innerHTML=""; }
-
-function openAuthModal(defaultRole){
-  const role = defaultRole || 'seeker';
-  document.getElementById('modal-root').innerHTML = `
-  <div class="modal-back" onclick="if(event.target===this) closeModal()">
-    <div class="modal" style="position:relative;">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <h2>Welcome to JobFinder</h2>
-      <div class="sub">Demo login — no real password verification.</div>
-      <div class="tabbar">
-        <button id="tab-seeker" class="${role==='seeker'?'active':''}" onclick="switchAuthTab('seeker')">Job Seeker</button>
-        <button id="tab-company" class="${role==='company'?'active':''}" onclick="switchAuthTab('company')">Company</button>
-      </div>
-      <div id="auth-body"></div>
-    </div>
-  </div>`;
-  switchAuthTab(role);
-}
-function switchAuthTab(role){
-  document.getElementById('tab-seeker').classList.toggle('active', role==='seeker');
-  document.getElementById('tab-company').classList.toggle('active', role==='company');
-  const body = document.getElementById('auth-body');
-  if(role==='seeker'){
-    body.innerHTML = `
-      <label>Full Name</label><input id="s-name" placeholder="Your name">
-      <label>Email</label><input id="s-email" type="email" placeholder="you@example.com">
-      <div class="modal-actions"><button class="btn btn-primary btn-block" onclick="seekerLogin()">Continue</button></div>
-      <div id="auth-msg"></div>`;
-  } else {
-    body.innerHTML = `
-      <label>Company Name</label><input id="c-name" placeholder="Company name (existing or new)">
-      <label>City</label><select id="c-city">${CITIES.map(c=>`<option>${c}</option>`).join("")}</select>
-      <label>Industry</label><select id="c-industry">${CATEGORIES.map(([c])=>`<option>${c}</option>`).join("")}</select>
-      <div class="modal-actions"><button class="btn btn-primary btn-block" onclick="companyLogin()">Continue</button></div>
-      <div id="auth-msg"></div>`;
-  }
-}
-function seekerLogin(){
-  const name=document.getElementById('s-name').value.trim();
-  const email=document.getElementById('s-email').value.trim();
-  if(!name||!email){ document.getElementById('auth-msg').innerHTML=`<div class="status-msg status-err">Enter your name and email.</div>`; return; }
-  SESSION={role:'seeker', seekerEmail:email, seekerName:name, companyId:null, isAdmin:false};
-  renderNavActions(); closeModal(); location.hash="#/account";
-}
-async function companyLogin(){
-  const name=document.getElementById('c-name').value.trim();
-  if(!name){ document.getElementById('auth-msg').innerHTML=`<div class="status-msg status-err">Enter a company name.</div>`; return; }
-  let co = DB.companies.find(c=>c.name.toLowerCase()===name.toLowerCase());
-  if(!co){
-    co = {id:uid(), name, industry:document.getElementById('c-industry').value, city:document.getElementById('c-city').value, verified:false, logoColor:colorFor(name), description:"", createdAt:new Date().toISOString()};
-    DB.companies.push(co);
-    await persist('companies');
-  }
-  SESSION={role:'company', companyId:co.id, seekerEmail:null, seekerName:null, isAdmin:false};
-  renderNavActions(); closeModal(); location.hash="#/dashboard";
-}
-
-function openApplyModal(jobId){
-  const j = DB.jobs.find(x=>x.id===jobId); if(!j) return;
-  const co = companyById(j.companyId);
-  document.getElementById('modal-root').innerHTML = `
-  <div class="modal-back" onclick="if(event.target===this) closeModal()">
-    <div class="modal" style="position:relative;">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <h2>Apply — ${esc(j.title)}</h2>
-      <div class="sub">${esc(co?co.name:'')} · ${esc(j.city)}</div>
-      <label>Full Name</label><input id="a-name" value="${esc(SESSION.seekerName||'')}" placeholder="Your name">
-      <label>Email</label><input id="a-email" type="email" value="${esc(SESSION.seekerEmail||'')}" placeholder="you@example.com">
-      <label>Short pitch / CV summary</label><textarea id="a-cv" placeholder="A few lines about your experience..."></textarea>
-      <div class="modal-actions"><button class="btn btn-primary btn-block" onclick="submitApplication('${jobId}')">Submit Application</button></div>
-      <div id="apply-msg"></div>
-    </div>
-  </div>`;
-}
-async function submitApplication(jobId){
-  const name=document.getElementById('a-name').value.trim();
-  const email=document.getElementById('a-email').value.trim();
-  if(!name||!email){ document.getElementById('apply-msg').innerHTML=`<div class="status-msg status-err">Name and email are required.</div>`; return; }
-  DB.applications.push({id:uid(), jobId, name, email, cv:document.getElementById('a-cv').value.trim(), status:"Applied", appliedAt:new Date().toISOString()});
-  await persist('applications');
-  if(!SESSION.role){ SESSION={role:'seeker', seekerEmail:email, seekerName:name, companyId:null, isAdmin:false}; renderNavActions(); }
-  document.getElementById('apply-msg').innerHTML=`<div class="status-msg status-ok">Application submitted! Track it under My Account.</div>`;
-}
-function saveJob(jobId){
-  if(!SESSION.role){ openAuthModal('seeker'); return; }
-  alert('Job saved to your account (demo).');
-}
-
-/* ---------------- footer ---------------- */
-function footerHtml(){
-  return `
-  <footer class="site">
-    <div class="wrap footer-grid">
-      <div><h4>Company</h4><a href="javascript:void(0)">About us</a><a href="javascript:void(0)">Contact</a><a href="javascript:void(0)">Careers</a></div>
-      <div><h4>Support</h4><a href="javascript:void(0)">Help center</a><a href="javascript:void(0)">Privacy policy</a><a href="javascript:void(0)">Terms of service</a></div>
-      <div><h4>Admin</h4><a href="#/admin">Admin Panel</a></div>
-    </div>
-    <div class="wrap footer-bottom">© 2026 JobFinder Pakistan — All rights reserved. Demo prototype.</div>
-  </footer>`;
-}
-
-/* ---------------- router ---------------- */
-async function route(){
-  const hash = location.hash.replace('#','') || '/';
-  const [path, qs] = hash.split('?');
-  const params = new URLSearchParams(qs||"");
-  if(params.get('city')) FILTERS.city = params.get('city');
-  if(params.get('category')) FILTERS.category = params.get('category');
-
-  document.querySelectorAll('.mobile-tabs a').forEach(a=>a.classList.toggle('active', a.dataset.r===path));
-
-  let html = "";
-  if(path==='/' ) html = pageHome();
-  else if(path==='/jobs') html = pageJobs();
-  else if(path==='/internships') html = pageInternships();
-  else if(path==='/remote') html = pageRemote();
-  else if(path==='/companies') html = pageCompanies();
-  else if(path==='/career-updates') html = pageCareerUpdates();
-  else if(path==='/post-job') html = pagePostJob();
-  else if(path==='/dashboard') html = pageDashboard();
-  else if(path==='/account') html = pageAccount();
-  else if(path==='/admin') html = pageAdmin();
-  else html = pageHome();
-
-  app.innerHTML = html;
-  window.scrollTo(0,0);
-}
-function render(){ route(); }
-
-window.addEventListener('hashchange', route);
-(async function init(){
-  await loadDB();
-  renderNavActions();
-  route();
-})();
-</script>
-</body>
-</html>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import {
+  getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, setDoc, arrayUnion,
+  onSnapshot, query, orderBy, getDocs
+} from "https://www.gstatic.com/fire
